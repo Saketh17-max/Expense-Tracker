@@ -5,7 +5,6 @@ import 'screens/home_screen.dart';
 
 void main() {
   runApp(
-    // Wrap the entire app with ChangeNotifierProvider to manage state globally
     ChangeNotifierProvider(
       create: (context) => TransactionProvider(),
       child: const MyApp(),
@@ -20,26 +19,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Business Expense Tracker',
-      debugShowCheckedModeBanner: false, // Clean UI without debug banner
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.blue,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.indigo,
+          brightness: Brightness.light,
+        ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.indigo,
+          elevation: 0,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.indigo,
           foregroundColor: Colors.white,
-          elevation: 2,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-          ),
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-        ),
+        scaffoldBackgroundColor: const Color(0xFFF8F9FA),
       ),
       home: const HomeScreen(),
     );

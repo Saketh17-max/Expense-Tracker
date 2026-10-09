@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
 class TransactionProvider with ChangeNotifier {
-  // The private list of transactions
+  // Private list of transactions
   final List<TransactionModel> _transactions = [
-    // Some initial sample data to show the dashboard
     TransactionModel(
       id: DateTime.now().subtract(const Duration(days: 2)).toString(),
       title: 'Product Sales',
       amount: 5000,
       type: TransactionType.income,
       date: DateTime.now().subtract(const Duration(days: 2)),
+      category: 'Sales',
     ),
     TransactionModel(
       id: DateTime.now().subtract(const Duration(days: 1)).toString(),
@@ -18,53 +18,77 @@ class TransactionProvider with ChangeNotifier {
       amount: 1200,
       type: TransactionType.expense,
       date: DateTime.now().subtract(const Duration(days: 1)),
+      category: 'Supplies',
+    ),
+    TransactionModel(
+      id: DateTime.now().subtract(const Duration(days: 3)).toString(),
+      title: 'Electricity Bill',
+      amount: 800,
+      type: TransactionType.expense,
+      date: DateTime.now().subtract(const Duration(days: 3)),
+      category: 'Utilities',
     ),
   ];
 
-  // Getter to access the transaction list safely
   List<TransactionModel> get transactions {
-    // Return a copy or just the list, reversing it to show newest first
     return [..._transactions].reversed.toList();
   }
 
-  // Calculate total income
   double get totalIncome {
     double total = 0;
     for (var tx in _transactions) {
-      if (tx.type == TransactionType.income) {
-        total += tx.amount;
-      }
+      if (tx.type == TransactionType.income) total += tx.amount;
     }
     return total;
   }
 
-  // Calculate total expense
   double get totalExpense {
     double total = 0;
     for (var tx in _transactions) {
-      if (tx.type == TransactionType.expense) {
-        total += tx.amount;
-      }
+      if (tx.type == TransactionType.expense) total += tx.amount;
     }
     return total;
   }
 
-  // Calculate current balance (Income - Expense)
-  double get balance {
-    return totalIncome - totalExpense;
+  double get balance => totalIncome - totalExpense;
+
+  // Group expenses by category for charts
+  Map<String, double> get expensesByCategory {
+    Map<String, double> groupedData = {};
+    for (var tx in _transactions) {
+      if (tx.type == TransactionType.expense) {
+        if (groupedData.containsKey(tx.category)) {
+          groupedData[tx.category] = groupedData[tx.category]! + tx.amount;
+        } else {
+          groupedData[tx.category] = tx.amount;
+        }
+      }
+    }
+    return groupedData;
   }
 
-  // Add a new transaction
+  // Group income by category for charts
+  Map<String, double> get incomeByCategory {
+    Map<String, double> groupedData = {};
+    for (var tx in _transactions) {
+      if (tx.type == TransactionType.income) {
+        if (groupedData.containsKey(tx.category)) {
+          groupedData[tx.category] = groupedData[tx.category]! + tx.amount;
+        } else {
+          groupedData[tx.category] = tx.amount;
+        }
+      }
+    }
+    return groupedData;
+  }
+
   void addTransaction(TransactionModel newTx) {
     _transactions.add(newTx);
-    // notifyListeners() tells all listening widgets (like Consumer) to rebuild
     notifyListeners();
   }
 
-  // Delete a transaction by its ID
   void deleteTransaction(String id) {
     _transactions.removeWhere((tx) => tx.id == id);
-    // notifyListeners() updates the UI after deletion
     notifyListeners();
   }
 }

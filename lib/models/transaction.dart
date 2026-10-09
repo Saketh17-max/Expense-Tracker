@@ -6,6 +6,7 @@ class TransactionModel {
   final double amount;
   final TransactionType type;
   final DateTime date;
+  final String category; // Added category field
 
   TransactionModel({
     required this.id,
@@ -13,5 +14,6 @@ class TransactionModel {
     required this.amount,
     required this.type,
     required this.date,
+    required this.category,
   });
 }

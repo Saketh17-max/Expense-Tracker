@@ -13,27 +13,21 @@ class TransactionCard extends StatelessWidget {
       context: context,
       builder: (BuildContext ctx) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: const Text('Delete Transaction?'),
           content: const Text('Are you sure you want to delete this transaction?'),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(ctx).pop(); // Close dialog without deleting
-              },
+              onPressed: () => Navigator.of(ctx).pop(),
               child: const Text('Cancel'),
             ),
-            TextButton(
+            FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () {
-                // Delete transaction using Provider and close dialog
-                // Using context.read() because we are inside an event handler
-                // and don't need to listen to changes here.
                 context.read<TransactionProvider>().deleteTransaction(transaction.id);
                 Navigator.of(ctx).pop();
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
-              ),
+              child: const Text('Delete'),
             ),
           ],
         );
@@ -41,42 +35,57 @@ class TransactionCard extends StatelessWidget {
     );
   }
 
+  IconData _getCategoryIcon(String category) {
+    switch (category) {
+      case 'Food': return Icons.restaurant;
+      case 'Transport': return Icons.directions_car;
+      case 'Utilities': return Icons.bolt;
+      case 'Supplies': return Icons.shopping_bag;
+      case 'Sales': return Icons.storefront;
+      case 'Freelance': return Icons.computer;
+      case 'Investments': return Icons.trending_up;
+      default: return Icons.category;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isIncome = transaction.type == TransactionType.income;
     final color = isIncome ? Colors.green : Colors.red;
     
-    // Formatting the date simply
     final String formattedDate =
         '${transaction.date.day.toString().padLeft(2, '0')}-${transaction.date.month.toString().padLeft(2, '0')}-${transaction.date.year}';
 
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      elevation: 1,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: color.withValues(alpha: 0.2),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leading: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Icon(
-            isIncome ? Icons.arrow_downward : Icons.arrow_upward,
+            _getCategoryIcon(transaction.category),
             color: color,
           ),
         ),
         title: Text(
           transaction.title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(isIncome ? 'Income' : 'Expense'),
-            Text(formattedDate),
-          ],
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 4.0),
+          child: Text('${transaction.category} • $formattedDate', style: TextStyle(color: Colors.grey[600])),
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '₹${transaction.amount.toStringAsFixed(2)}',
+              '${isIncome ? '+' : '-'}₹${transaction.amount.toStringAsFixed(0)}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -84,7 +93,7 @@ class TransactionCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
+              icon: const Icon(Icons.delete_outline, color: Colors.grey),
               onPressed: () => _showDeleteConfirmation(context),
             ),
           ],

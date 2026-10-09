@@ -11,26 +11,24 @@ class AddTransactionScreen extends StatefulWidget {
 }
 
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
-  // GlobalKey to identify and validate the form
   final _formKey = GlobalKey<FormState>();
-
-  // Controllers to retrieve text from TextFields
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
-  // State variables for dropdown and date picker
-  TransactionType? _selectedType;
+  TransactionType _selectedType = TransactionType.expense;
+  String? _selectedCategory;
   DateTime _selectedDate = DateTime.now();
+
+  final List<String> _incomeCategories = ['Sales', 'Freelance', 'Investments', 'Other'];
+  final List<String> _expenseCategories = ['Food', 'Transport', 'Utilities', 'Supplies', 'Other'];
 
   @override
   void dispose() {
-    // Clean up controllers when widget is disposed
     _titleController.dispose();
     _amountController.dispose();
     super.dispose();
   }
 
-  // Method to show Flutter's built-in date picker
   void _presentDatePicker() async {
     final pickedDate = await showDatePicker(
       context: context,
@@ -45,176 +43,167 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     }
   }
 
-  // Method to validate and save the transaction
   void _submitData() {
     if (_formKey.currentState!.validate()) {
       final title = _titleController.text;
       final amount = double.tryParse(_amountController.text) ?? 0.0;
 
-      // Type must be selected
-      if (_selectedType == null) {
+      if (_selectedCategory == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select a transaction type')),
+          const SnackBar(content: Text('Please select a category')),
         );
         return;
       }
 
-      // Create new transaction object
       final newTx = TransactionModel(
         id: DateTime.now().toString(),
         title: title,
         amount: amount,
-        type: _selectedType!,
+        type: _selectedType,
         date: _selectedDate,
+        category: _selectedCategory!,
       );
 
-      // Add transaction using Provider (context.read to avoid listening here)
       context.read<TransactionProvider>().addTransaction(newTx);
 
-      // Show confirmation SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Transaction added successfully'),
           backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
         ),
       );
 
-      // Return to previous screen
       Navigator.pop(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Simple date formatting
     final String formattedDate =
         '${_selectedDate.day.toString().padLeft(2, '0')}-${_selectedDate.month.toString().padLeft(2, '0')}-${_selectedDate.year}';
 
+    List<String> currentCategories = [];
+    if (_selectedType == TransactionType.income) {
+      currentCategories = _incomeCategories;
+    } else if (_selectedType == TransactionType.expense) {
+      currentCategories = _expenseCategories;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Transaction'),
+        title: const Text('New Transaction'),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Title input
-                  TextFormField(
-                    controller: _titleController,
-                    decoration: const InputDecoration(
-                      labelText: 'Transaction Title',
-                      hintText: 'e.g. Product Sales, Electricity Bill',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Please enter a transaction title';
-                      }
-                      return null;
-                    },
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Type Selection (Radio buttons for better UX)
+              const Text('Transaction Type', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              const SizedBox(height: 8),
+              SegmentedButton<TransactionType>(
+                segments: const [
+                  ButtonSegment<TransactionType>(
+                    value: TransactionType.income,
+                    label: Text('Income'),
+                    icon: Icon(Icons.arrow_downward),
                   ),
-                  const SizedBox(height: 16),
-                  
-                  // Amount input
-                  TextFormField(
-                    controller: _amountController,
-                    decoration: const InputDecoration(
-                      labelText: 'Amount (₹)',
-                      hintText: 'e.g. 5000',
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter an amount';
-                      }
-                      final amount = double.tryParse(value);
-                      if (amount == null) {
-                        return 'Please enter a valid number';
-                      }
-                      if (amount <= 0) {
-                        return 'Amount must be greater than 0';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  
-                  // Type dropdown
-                  DropdownButtonFormField<TransactionType>(
-                    decoration: const InputDecoration(
-                      labelText: 'Transaction Type',
-                      border: OutlineInputBorder(),
-                    ),
-                    initialValue: _selectedType,
-                    items: const [
-                      DropdownMenuItem(
-                        value: TransactionType.income,
-                        child: Text('Income'),
-                      ),
-                      DropdownMenuItem(
-                        value: TransactionType.expense,
-                        child: Text('Expense'),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedType = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == null) {
-                        return 'Please select a transaction type';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  
-                  // Date picker row
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Selected Date: $formattedDate',
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: _presentDatePicker,
-                        child: const Text('Choose Date'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  
-                  // Submit button
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: _submitData,
-                    child: const Text(
-                      'Add Transaction',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                  ButtonSegment<TransactionType>(
+                    value: TransactionType.expense,
+                    label: Text('Expense'),
+                    icon: Icon(Icons.arrow_upward),
                   ),
                 ],
+                selected: <TransactionType>{_selectedType},
+                onSelectionChanged: (Set<TransactionType> newSelection) {
+                  setState(() {
+                    _selectedType = newSelection.first;
+                    _selectedCategory = null; // Reset category
+                  });
+                },
               ),
-            ),
+              const SizedBox(height: 16),
+              
+              TextFormField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  labelText: 'Transaction Title',
+                  prefixIcon: const Icon(Icons.description_outlined),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                validator: (value) => (value == null || value.trim().isEmpty) ? 'Enter a title' : null,
+              ),
+              const SizedBox(height: 16),
+              
+              TextFormField(
+                controller: _amountController,
+                decoration: InputDecoration(
+                  labelText: 'Amount (₹)',
+                  prefixIcon: const Icon(Icons.currency_rupee),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                validator: (value) {
+                  if (value == null || value.isEmpty) return 'Enter an amount';
+                  final amount = double.tryParse(value);
+                  if (amount == null) return 'Enter a valid number';
+                  if (amount <= 0) return 'Must be greater than 0';
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              DropdownButtonFormField<String>(
+                key: ValueKey(_selectedType),
+                decoration: InputDecoration(
+                  labelText: 'Category',
+                  prefixIcon: const Icon(Icons.category_outlined),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                initialValue: _selectedCategory,
+                hint: const Text('Select a category'),
+                items: currentCategories.map((cat) {
+                  return DropdownMenuItem(
+                    value: cat,
+                    child: Text(cat),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    _selectedCategory = val;
+                  });
+                },
+                validator: (value) => value == null ? 'Select a category' : null,
+              ),
+              const SizedBox(height: 16),
+              
+              InkWell(
+                onTap: _presentDatePicker,
+                borderRadius: BorderRadius.circular(12),
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: 'Date',
+                    prefixIcon: const Icon(Icons.calendar_today),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: Text(formattedDate, style: const TextStyle(fontSize: 16)),
+                ),
+              ),
+              const SizedBox(height: 32),
+              
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                onPressed: _submitData,
+                child: const Text('Save Transaction', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+            ],
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/transaction_provider.dart';
 import '../widgets/balance_card.dart';
 import '../widgets/transaction_card.dart';
+import '../widgets/expense_pie_chart.dart';
 import 'add_transaction_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,65 +11,94 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold provides the standard app structure
     return Scaffold(
+      backgroundColor: Colors.grey[50], // Slightly off-white background
       appBar: AppBar(
-        title: const Text('Business Expense Tracker'),
+        title: const Text('Dashboard', style: TextStyle(fontWeight: FontWeight.w600)),
         centerTitle: true,
+        elevation: 0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Display the summary cards for Income, Expense, and Balance
-          const BalanceCard(),
-          
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Text(
-              'Recent Transactions',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          
-          // Expanded so the ListView takes the remaining screen space
-          Expanded(
-            // Consumer listens to TransactionProvider and rebuilds its builder 
-            // function when notifyListeners() is called in the provider.
-            child: Consumer<TransactionProvider>(
-              builder: (context, provider, child) {
-                if (provider.transactions.isEmpty) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32.0),
+      body: Consumer<TransactionProvider>(
+        builder: (context, provider, child) {
+          final isEmpty = provider.transactions.isEmpty;
+
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Summary Cards
+                    const BalanceCard(),
+                    
+                    // Chart Section (Only show if there are transactions)
+                    if (!isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        child: Card(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: ExpensePieChart(),
+                          ),
+                        ),
+                      ),
+                    
+                    // Title for Recent Transactions
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
                       child: Text(
-                        'No transactions yet.\n\nAdd your first income or expense\nto start tracking your business.',
-                        textAlign: TextAlign.center,
+                        'Recent Transactions',
                         style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  );
-                }
-
-                return ListView.builder(
-                  itemCount: provider.transactions.length,
-                  itemBuilder: (context, index) {
-                    final tx = provider.transactions[index];
-                    return TransactionCard(transaction: tx);
-                  },
-                );
-              },
-            ),
-          ),
-        ],
+                  ],
+                ),
+              ),
+              
+              // Transactions List
+              if (isEmpty)
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.account_balance_wallet_outlined, size: 64, color: Colors.grey[400]),
+                        const SizedBox(height: 16),
+                        Text(
+                          'No transactions yet.\nAdd your first income or expense!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              else
+                SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 80),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final tx = provider.transactions[index];
+                        return TransactionCard(transaction: tx);
+                      },
+                      childCount: provider.transactions.length,
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
       ),
-      // FloatingActionButton navigates to the add transaction screen
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
@@ -77,7 +107,8 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        icon: const Icon(Icons.add),
+        label: const Text('Add'),
       ),
     );
   }
