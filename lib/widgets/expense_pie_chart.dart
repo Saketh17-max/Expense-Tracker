@@ -13,80 +13,116 @@ class ExpensePieChart extends StatelessWidget {
 
     if (expensesByCategory.isEmpty) {
       return const SizedBox(
-        height: 200,
+        height: 220,
         child: Center(
           child: Text(
-            'No expenses to show in chart',
-            style: TextStyle(color: Colors.grey),
+            'No expenses yet',
+            style: TextStyle(color: Color(0xFF94A3B8), fontWeight: FontWeight.w500),
           ),
         ),
       );
     }
 
-    // Assign colors to categories
     final Map<String, Color> categoryColors = {
-      'Food': Colors.orange,
-      'Transport': Colors.blue,
-      'Utilities': Colors.cyan,
-      'Supplies': Colors.purple,
-      'Other': Colors.grey,
+      'Food': const Color(0xFFF59E0B),
+      'Transport': const Color(0xFF3B82F6),
+      'Utilities': const Color(0xFF06B6D4),
+      'Supplies': const Color(0xFF8B5CF6),
+      'Other': const Color(0xFF64748B),
     };
 
     List<PieChartSectionData> sections = expensesByCategory.entries.map((entry) {
       final category = entry.key;
       final amount = entry.value;
-      final color = categoryColors[category] ?? Colors.indigo;
+      final color = categoryColors[category] ?? const Color(0xFF0F172A);
 
       return PieChartSectionData(
         color: color,
         value: amount,
-        title: '₹${amount.toInt()}',
-        radius: 50,
-        titleStyle: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+        title: '',
+        radius: 24, // Thin donut
+        badgeWidget: null,
       );
     }).toList();
 
     return Column(
       children: [
-        const Text(
-          'Expenses by Category',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        SizedBox(
-          height: 200,
-          child: PieChart(
-            PieChartData(
-              sections: sections,
-              centerSpaceRadius: 40,
-              sectionsSpace: 2,
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Expense Breakdown',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF0F172A),
             ),
           ),
         ),
-        const SizedBox(height: 16),
-        // Legend
+        const SizedBox(height: 24),
+        SizedBox(
+          height: 180,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              PieChart(
+                PieChartData(
+                  sections: sections,
+                  centerSpaceRadius: 60,
+                  sectionsSpace: 4,
+                  borderData: FlBorderData(show: false),
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Total',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF64748B),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    '₹${provider.totalExpense.toStringAsFixed(0)}',
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFF0F172A),
+                      letterSpacing: -1,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 24),
         Wrap(
-          spacing: 16,
-          runSpacing: 8,
+          spacing: 20,
+          runSpacing: 12,
           alignment: WrapAlignment.center,
           children: expensesByCategory.keys.map((category) {
             return Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  width: 12,
-                  height: 12,
+                  width: 10,
+                  height: 10,
                   decoration: BoxDecoration(
-                    color: categoryColors[category] ?? Colors.indigo,
+                    color: categoryColors[category] ?? const Color(0xFF0F172A),
                     shape: BoxShape.circle,
                   ),
                 ),
-                const SizedBox(width: 4),
-                Text(category, style: const TextStyle(fontSize: 12)),
+                const SizedBox(width: 8),
+                Text(
+                  category,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF475569),
+                  ),
+                ),
               ],
             );
           }).toList(),

@@ -12,11 +12,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50], // Slightly off-white background
       appBar: AppBar(
-        title: const Text('Dashboard', style: TextStyle(fontWeight: FontWeight.w600)),
-        centerTitle: true,
-        elevation: 0,
+        title: const Text(
+          'Overview',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 22,
+            letterSpacing: -0.5,
+          ),
+        ),
+        centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications_none_rounded),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: Consumer<TransactionProvider>(
         builder: (context, provider, child) {
@@ -28,41 +40,42 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Summary Cards
                     const BalanceCard(),
                     
-                    // Chart Section (Only show if there are transactions)
                     if (!isEmpty)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                        child: Card(
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: ExpensePieChart(),
-                          ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                        padding: const EdgeInsets.all(24.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(32),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF0F172A).withValues(alpha: 0.04),
+                              blurRadius: 24,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
                         ),
+                        child: const ExpensePieChart(),
                       ),
                     
-                    // Title for Recent Transactions
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-                      child: Text(
-                        'Recent Transactions',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                    if (!isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(28.0, 24.0, 28.0, 8.0),
+                        child: Text(
+                          'Recent Transactions',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF0F172A),
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),
               
-              // Transactions List
               if (isEmpty)
                 SliverFillRemaining(
                   hasScrollBody: false,
@@ -75,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           'No transactions yet.\nAdd your first income or expense!',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                          style: TextStyle(fontSize: 16, color: Colors.grey[600], fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -83,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                 )
               else
                 SliverPadding(
-                  padding: const EdgeInsets.only(bottom: 80),
+                  padding: const EdgeInsets.only(bottom: 100),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
@@ -98,7 +111,7 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
@@ -107,8 +120,7 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         },
-        icon: const Icon(Icons.add),
-        label: const Text('Add'),
+        child: const Icon(Icons.add_rounded, size: 28),
       ),
     );
   }
