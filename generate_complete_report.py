@@ -22,23 +22,6 @@ add_tx_b64 = get_base64_img(os.path.join(assets_dir, "add_transaction_screen.png
 dialog_b64 = get_base64_img(os.path.join(assets_dir, "delete_dialog_screen.png"))
 chart_tx_b64 = get_base64_img(os.path.join(assets_dir, "media_1791527347291.png"))
 
-# Read actual code files
-def read_code(rel_path):
-    full_path = os.path.join(r"C:\Users\venka\Desktop\college\flutter", rel_path)
-    if os.path.exists(full_path):
-        with open(full_path, "r", encoding="utf-8") as f:
-            return f.read()
-    return ""
-
-main_dart_code = read_code("lib/main.dart")
-model_dart_code = read_code("lib/models/transaction.dart")
-provider_dart_code = read_code("lib/providers/transaction_provider.dart")
-home_screen_code = read_code("lib/screens/home_screen.dart")
-add_screen_code = read_code("lib/screens/add_transaction_screen.dart")
-balance_card_code = read_code("lib/widgets/balance_card.dart")
-chart_widget_code = read_code("lib/widgets/expense_pie_chart.dart")
-tx_card_code = read_code("lib/widgets/transaction_card.dart")
-
 html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,8 +43,8 @@ html_content = f"""<!DOCTYPE html>
     background-color: #f1f5f9;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
-    font-size: 10pt;
-    line-height: 1.5;
+    font-size: 9.5pt;
+    line-height: 1.45;
   }}
   .page {{
     width: 210mm;
@@ -70,7 +53,7 @@ html_content = f"""<!DOCTYPE html>
     max-height: 297mm;
     position: relative;
     background: #ffffff;
-    padding: 24mm 20mm 20mm 20mm;
+    padding: 22mm 20mm 26mm 20mm;
     page-break-after: always;
     page-break-inside: avoid;
     overflow: hidden;
@@ -96,7 +79,7 @@ html_content = f"""<!DOCTYPE html>
   }}
   .page-footer {{
     position: absolute;
-    bottom: 9mm;
+    bottom: 8mm;
     left: 20mm;
     right: 20mm;
     height: 7mm;
@@ -117,27 +100,27 @@ html_content = f"""<!DOCTYPE html>
     letter-spacing: -0.3px;
   }}
   h2.section-title {{
-    font-size: 14pt;
+    font-size: 13.5pt;
     color: #1e3a8a;
     border-bottom: 2px solid #e2e8f0;
     padding-bottom: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
   }}
   h3.sub-title {{
-    font-size: 11pt;
+    font-size: 10.5pt;
     color: #0f172a;
-    margin-top: 10px;
-    margin-bottom: 6px;
+    margin-top: 8px;
+    margin-bottom: 5px;
   }}
   .badge {{
     background: #eff6ff;
     color: #1d4ed8;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 8pt;
+    font-size: 7.5pt;
     font-weight: 700;
     text-transform: uppercase;
   }}
@@ -146,20 +129,20 @@ html_content = f"""<!DOCTYPE html>
   table.report-table {{
     width: 100%;
     border-collapse: collapse;
-    margin-top: 8px;
-    margin-bottom: 12px;
-    font-size: 9pt;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    font-size: 8.5pt;
   }}
   table.report-table th {{
     background: #1e3a8a;
     color: #ffffff;
     font-weight: 600;
     text-align: left;
-    padding: 7px 10px;
+    padding: 6px 10px;
     border: 1px solid #1e3a8a;
   }}
   table.report-table td {{
-    padding: 6px 10px;
+    padding: 5px 10px;
     border: 1px solid #cbd5e1;
     color: #334155;
   }}
@@ -173,14 +156,14 @@ html_content = f"""<!DOCTYPE html>
     border: 1px solid #e2e8f0;
     border-left: 3.5px solid #1e3a8a;
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 8pt;
-    line-height: 1.35;
+    font-size: 7.2pt;
+    line-height: 1.25;
     color: #0f172a;
     overflow: hidden;
-    margin-top: 6px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 8px;
     white-space: pre-wrap;
     word-break: break-all;
   }}
@@ -194,21 +177,21 @@ html_content = f"""<!DOCTYPE html>
     background: #f8fafc;
     border: 1px solid #cbd5e1;
     border-left: 4px solid #3b82f6;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 6px;
-    margin: 8px 0;
-    font-size: 9pt;
+    margin: 6px 0;
+    font-size: 8.5pt;
   }}
   .callout-title {{
     font-weight: 700;
     color: #1e3a8a;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }}
   
   /* Image figure containers */
   .figure-box {{
     text-align: center;
-    margin: 8px 0;
+    margin: 6px 0;
   }}
   .figure-img {{
     max-width: 100%;
@@ -217,35 +200,34 @@ html_content = f"""<!DOCTYPE html>
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }}
   .caption {{
-    font-size: 8pt;
+    font-size: 7.5pt;
     color: #64748b;
     font-weight: 600;
-    margin-top: 4px;
+    margin-top: 3px;
   }}
   
   p {{
-    margin-top: 4px;
-    margin-bottom: 8px;
+    margin-top: 3px;
+    margin-bottom: 6px;
     text-align: justify;
   }}
   ul, ol {{
-    margin-top: 4px;
-    margin-bottom: 8px;
-    padding-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    padding-left: 18px;
   }}
   li {{
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }}
 </style>
 </head>
 <body>
 
 <!-- ==========================================
-     PAGE 1: COVER PAGE (Exact College Template)
+     PAGE 1: COVER PAGE
      ========================================== -->
 <div class="page" style="padding: 16mm 18mm 18mm 18mm;">
-  <!-- College Header Banner -->
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 25mm;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22mm;">
     <div style="display: flex; align-items: center; gap: 14px;">
       <img src="{logo_b64}" style="height: 68px; object-fit: contain;">
       <div>
@@ -264,9 +246,8 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Course & Document Title -->
-  <div style="text-align: center; margin-bottom: 20mm;">
-    <div style="font-size: 19pt; font-weight: 800; color: #1d70b8; letter-spacing: 0.5px; margin-bottom: 18mm;">
+  <div style="text-align: center; margin-bottom: 18mm;">
+    <div style="font-size: 19pt; font-weight: 800; color: #1d70b8; letter-spacing: 0.5px; margin-bottom: 16mm;">
       USER INTERFACE DESIGN USING FLUTTER
     </div>
     <div style="font-size: 21pt; font-weight: 800; color: #1d70b8; letter-spacing: 1px;">
@@ -274,17 +255,16 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Project Title Box -->
-  <div style="margin-bottom: 14mm; padding-top: 10px;">
+  <div style="margin-bottom: 14mm; padding-top: 8px;">
     <div style="font-size: 12pt; font-weight: 700; color: #1d70b8; margin-bottom: 8px;">
       Project Title:
     </div>
-    <div style="font-size: 12.5pt; font-weight: 600; color: #0f172a; padding-bottom: 6px; border-bottom: 1.5px solid #1d70b8; line-height: 1.5;">
+    <div style="font-size: 12pt; font-weight: 600; color: #0f172a; padding-bottom: 6px; border-bottom: 1.5px solid #1d70b8; line-height: 1.5;">
       Create a small-business income/expense tracker with balance summary using Provider.
     </div>
   </div>
 
-  <!-- Student Details Row (Name & Roll No) -->
+  <!-- Student Name and Roll No in the requested space -->
   <div style="display: flex; justify-content: space-between; font-size: 11pt; font-weight: 600; color: #0f172a; margin-bottom: 14mm; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
     <div>Student Name : <span style="font-weight: 700; color: #1d70b8;">T Venkat Saketh</span></div>
     <div>Roll No : <span style="font-weight: 700; color: #1d70b8;">24PA1A05M4</span></div>
@@ -297,7 +277,7 @@ html_content = f"""<!DOCTYPE html>
   </div>
 
   <!-- Signatures Block -->
-  <div style="margin-top: 20mm;">
+  <div style="margin-top: 18mm;">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16mm; font-size: 10pt;">
       <div>
         <span style="font-weight: 800; color: #0f172a;">COURSE INSTRUCTOR :</span>
@@ -322,7 +302,7 @@ html_content = f"""<!DOCTYPE html>
 
 
 <!-- ==========================================
-     PAGE 2: INDEX / TABLE OF CONTENTS
+     PAGE 2: TABLE OF CONTENTS
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -330,14 +310,13 @@ html_content = f"""<!DOCTYPE html>
     <span>Table of Contents</span>
   </div>
 
-  <!-- Blue Header Bar matching template Page 2 -->
-  <div style="background: #1d70b8; color: #ffffff; padding: 12px 18px; border-radius: 4px; font-size: 16pt; font-weight: 800; letter-spacing: 0.5px; text-align: center; margin-bottom: 18px;">
+  <div style="background: #1d70b8; color: #ffffff; padding: 12px 18px; border-radius: 4px; font-size: 15pt; font-weight: 800; letter-spacing: 0.5px; text-align: center; margin-bottom: 16px;">
     PROJECT REPORT
   </div>
 
   <h2 class="section-title">Table of Contents</h2>
   
-  <table class="report-table" style="font-size: 9.5pt;">
+  <table class="report-table" style="font-size: 9pt;">
     <thead>
       <tr>
         <th style="width: 12%; text-align: center;">S. No.</th>
@@ -358,7 +337,7 @@ html_content = f"""<!DOCTYPE html>
       </tr>
       <tr>
         <td style="text-align: center; font-weight: 700;">3</td>
-        <td><strong>Project Objectives & Sustainable Development Goal (SDG 8)</strong></td>
+        <td><strong>Project Objectives & System Scope</strong></td>
         <td style="text-align: center; font-weight: 700;">4</td>
       </tr>
       <tr>
@@ -383,32 +362,32 @@ html_content = f"""<!DOCTYPE html>
       </tr>
       <tr>
         <td style="text-align: center;">7.1</td>
-        <td style="padding-left: 24px;">Application Root & Global Theming (<code>lib/main.dart</code>)</td>
+        <td style="padding-left: 20px;">Application Root & Global Theming (<code>lib/main.dart</code>)</td>
         <td style="text-align: center;">8</td>
       </tr>
       <tr>
         <td style="text-align: center;">7.2</td>
-        <td style="padding-left: 24px;">Transaction Domain Data Model (<code>lib/models/transaction.dart</code>)</td>
+        <td style="padding-left: 20px;">Transaction Domain Data Model (<code>lib/models/transaction.dart</code>)</td>
         <td style="text-align: center;">8</td>
       </tr>
       <tr>
         <td style="text-align: center;">7.3</td>
-        <td style="padding-left: 24px;">State Management Controller (<code>lib/providers/transaction_provider.dart</code>)</td>
+        <td style="padding-left: 20px;">State Management Controller (<code>lib/providers/transaction_provider.dart</code>)</td>
         <td style="text-align: center;">9</td>
       </tr>
       <tr>
         <td style="text-align: center;">7.4</td>
-        <td style="padding-left: 24px;">Responsive Dashboard Screen (<code>lib/screens/home_screen.dart</code>)</td>
+        <td style="padding-left: 20px;">Responsive Dashboard Screen (<code>lib/screens/home_screen.dart</code>)</td>
         <td style="text-align: center;">10</td>
       </tr>
       <tr>
         <td style="text-align: center;">7.5</td>
-        <td style="padding-left: 24px;">Transaction Form & Form Validation (<code>lib/screens/add_transaction_screen.dart</code>)</td>
+        <td style="padding-left: 20px;">Transaction Form & Input Validation (<code>lib/screens/add_transaction_screen.dart</code>)</td>
         <td style="text-align: center;">11</td>
       </tr>
       <tr>
         <td style="text-align: center;">7.6</td>
-        <td style="padding-left: 24px;">Modular Widgets: Balance Card & Category Pie Chart</td>
+        <td style="padding-left: 20px;">Modular Widgets: Balance Card & Category Pie Chart</td>
         <td style="text-align: center;">12</td>
       </tr>
       <tr>
@@ -428,13 +407,13 @@ html_content = f"""<!DOCTYPE html>
       </tr>
       <tr>
         <td style="text-align: center; font-weight: 700;">11</td>
-        <td><strong>Conclusion, Viva-Voce Defense Guide & References</strong></td>
+        <td><strong>Project Conclusion & Technical Summary</strong></td>
         <td style="text-align: center; font-weight: 700;">15</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="callout" style="margin-top: 16px;">
+  <div class="callout" style="margin-top: 14px;">
     <div class="callout-title">Official Repository & Deployment Deliverables</div>
     <ul style="margin: 0; padding-left: 18px; font-size: 8.5pt;">
       <li><strong>GitHub Source Code Repository:</strong> <a href="https://github.com/Saketh17-max/Expense-Tracker" style="color:#1d4ed8; text-decoration:none;">https://github.com/Saketh17-max/Expense-Tracker</a></li>
@@ -500,34 +479,31 @@ html_content = f"""<!DOCTYPE html>
     </tr>
   </table>
 
-  <h2 class="section-title" style="margin-top: 14px;">2. Project Title & Problem Statement</h2>
+  <h2 class="section-title" style="margin-top: 12px;">2. Project Title & Problem Statement</h2>
 
   <div class="callout">
     <div class="callout-title">Formal Project Title</div>
-    <div style="font-weight: 700; color: #0f172a; font-size: 10pt;">
+    <div style="font-weight: 700; color: #0f172a; font-size: 9.5pt;">
       "Create a small-business income/expense tracker with balance summary using Provider."
     </div>
   </div>
 
   <h3 class="sub-title">2.1 Background & Context</h3>
   <p>
-    Micro, small, and medium enterprises (MSMEs) form the economic backbone of developing economies. Small retail establishments, freelance professionals, repair workshops, and service providers execute dozens of micro-transactions on a daily basis. Despite the critical need for cash flow clarity, a large majority of small-business operators continue to rely on manual paper ledgers (khatabook), unlinked physical receipts, or overly cumbersome enterprise software that requires steep learning curves and recurring subscription fees.
+    Micro and small enterprises form the economic backbone of developing communities. Small retail stores, freelance operators, repair technicians, and local service providers execute dozens of micro-transactions daily. Despite the critical requirement for cash flow clarity, most small-business owners continue to rely on manual paper ledgers or memory, leading to calculation inaccuracies, lack of cash visibility, and operational confusion.
   </p>
 
   <h3 class="sub-title">2.2 Core Problem Definition</h3>
-  <p>
-    Manual bookkeeping causes persistent business challenges:
-  </p>
   <ul>
-    <li><strong>Arithmetic Inaccuracies:</strong> Frequent calculation errors occur when manually aggregating daily income and running operational expenditures, resulting in distorted balance sheets.</li>
-    <li><strong>Lack of Real-time Cash Visibility:</strong> Business owners struggle to immediately evaluate whether their business is operating at a net surplus or cash deficit at any given hour.</li>
-    <li><strong>Absence of Expenditure Categorization:</strong> Without structured spending classification (Supplies, Utilities, Transport, Food, Inventory), owners cannot identify operational leakages or optimize operating costs.</li>
-    <li><strong>Overly Complex Existing Solutions:</strong> Mainstream accounting tools demand extensive setup, accounting jargon, cloud authentication, backend databases, and heavy processing overhead, intimidating non-technical business proprietors.</li>
+    <li><strong>Arithmetic Inaccuracies:</strong> Frequent manual computation errors occur when adding running expenses against revenue, distorting actual cash positions.</li>
+    <li><strong>Lack of Real-time Cash Visibility:</strong> Owners cannot instantly tell if their business is operating at a net profit or deficit at any given hour.</li>
+    <li><strong>Absence of Expenditure Categorization:</strong> Without spending categorization (Supplies, Utilities, Transport, Food), owners cannot identify operational leakages.</li>
+    <li><strong>Overly Complex Existing Solutions:</strong> Mainstream accounting packages require complex accounting knowledge, cloud logins, backend servers, and subscription fees.</li>
   </ul>
 
   <h3 class="sub-title">2.3 Proposed Solution</h3>
   <p>
-    The objective of this project is to build an intuitive, zero-dependency, college-viva compliant mobile and web client application developed in Flutter using the <strong>Provider</strong> pattern. The application delivers real-time net balance evaluation, itemized category breakdown charts, and seamless transaction creation and deletion with strict input validation, providing immediate operational clarity to business owners.
+    An intuitive, lightweight, offline-capable mobile and web application built in Flutter using the <strong>Provider</strong> architecture. It delivers instant net balance calculation, visual donut breakdown charts, and seamless transaction creation and deletion with strict client validation.
   </p>
 
   <div class="page-footer">
@@ -538,52 +514,43 @@ html_content = f"""<!DOCTYPE html>
 
 
 <!-- ==========================================
-     PAGE 4: OBJECTIVES & SDG 8 RELEVANCE
+     PAGE 4: PROJECT OBJECTIVES & SYSTEM SCOPE (NO SDG 8)
      ========================================== -->
 <div class="page">
   <div class="page-header">
-    <span>Objectives & SDG Relevance</span>
-    <span>Section 3 & 4</span>
+    <span>Project Objectives & System Scope</span>
+    <span>Section 3</span>
   </div>
 
-  <h2 class="section-title">3. Project Objectives</h2>
+  <h2 class="section-title">3. Project Objectives & System Scope</h2>
 
   <h3 class="sub-title">3.1 Primary Functional Objectives</h3>
   <ul>
-    <li><strong>Streamlined Income & Expense Recording:</strong> Provide a clean, guided form allowing business owners to input transaction titles, monetary amounts in Indian Rupees (₹), transaction categories, and accurate calendar dates.</li>
-    <li><strong>Automated Real-Time Financial Balance:</strong> Dynamically compute and display the total accumulated income, total aggregated expenses, and the resultant net balance ($Balance = Income - Expense$) without requiring manual recalculation or screen refreshes.</li>
+    <li><strong>Streamlined Financial Recording:</strong> Provide a clean, guided form allowing business owners to input transaction titles, monetary amounts in Indian Rupees (₹), transaction categories, and accurate calendar dates.</li>
+    <li><strong>Automated Real-Time Financial Balance:</strong> Dynamically compute and display the total accumulated income, total aggregated expenses, and the resultant net balance ($Balance = Income - Expense$) without manual recalculation.</li>
     <li><strong>Categorical Visual Analytics:</strong> Generate interactive graphical donut charts utilizing vector graphics (<code>fl_chart</code>) to display expenditure distribution across categories (Food, Transport, Utilities, Supplies, Other).</li>
-    <li><strong>Safe Transaction Management:</strong> Allow users to audit historical entries in a chronological feed and delete erroneous records with explicit dialog confirmation.</li>
+    <li><strong>Safe Transaction Management:</strong> Allow users to audit historical entries in a chronological feed and delete erroneous records with an explicit dialog confirmation.</li>
     <li><strong>Strict Client-Side Validation:</strong> Enforce rigorous validation rules to eliminate empty titles, negative quantities, zero amounts, and unselected classifications.</li>
   </ul>
 
-  <h3 class="sub-title">3.2 Technical & Academic Objectives</h3>
+  <h3 class="sub-title">3.2 Technical & Architectural Objectives</h3>
   <ul>
     <li><strong>Pure Provider Architecture:</strong> Strictly manage application state using Flutter's official <code>ChangeNotifier</code> and <code>ChangeNotifierProvider</code> paradigm, eliminating global variables, state leakage, or heavyweight enterprise BLoC/Redux boilerplate.</li>
-    <li><strong>Viva-Voce Clarity:</strong> Structure the codebase into modular, single-responsibility files that allow a 2nd-year computer science undergraduate to easily defend and explain every architectural decision during academic viva examination.</li>
+    <li><strong>Modular Component Structure:</strong> Structure the codebase into modular, single-responsibility files that allow a 2nd-year computer science undergraduate to easily defend and explain every architectural decision during academic viva examination.</li>
     <li><strong>Zero-Backend Simplicity:</strong> Achieve 100% reactive client-side performance without external databases, third-party authentication, or remote APIs, ensuring instant startup on both Android and Web.</li>
   </ul>
 
-  <h2 class="section-title" style="margin-top: 14px;">4. Sustainable Development Goal (SDG 8) Relevance</h2>
-
-  <div class="callout" style="border-left-color: #059669; background: #f0fdf4;">
-    <div class="callout-title" style="color: #065f46;">
-      United Nations Sustainable Development Goal 8: Decent Work and Economic Growth
-    </div>
-    <div style="font-size: 8.5pt; color: #166534; font-weight: 600;">
-      Target 8.3: Promote development-oriented policies that support productive activities, decent job creation, entrepreneurship, creativity, and innovation, and encourage the formalization and growth of micro-, small- and medium-sized enterprises (MSMEs).
-    </div>
-  </div>
-
-  <h3 class="sub-title">4.1 Academic Justification of SDG Alignment</h3>
+  <h3 class="sub-title">3.3 System Scope & Target Users</h3>
   <p>
-    This project directly supports <strong>UN SDG 8 (Decent Work and Economic Growth)</strong> by empowering local small-business owners, retail shopkeepers, and sole proprietors with an accessible digital accounting dashboard. By transitioning micro-enterprises from error-prone physical record-keeping to structured, real-time financial tracking:
+    The application is engineered specifically for sole proprietorships, retail shopkeepers, independent contractors, and freelance service providers who require an unencumbered, high-speed bookkeeping tool. The system operates directly in the browser or on mobile devices with zero configuration overhead, providing immediate cash flow tracking and visual financial clarity.
   </p>
-  <ol>
-    <li><strong>Promotes Sustainable Financial Management:</strong> Real-time visibility into net cash flow prevents cash shortages and prevents small businesses from accumulating hidden operational debts.</li>
-    <li><strong>Enables Prudent Operational Decision-Making:</strong> The categorical expenditure chart highlights disproportionate spending in categories such as utilities or raw materials, enabling owners to optimize overhead and enhance profitability.</li>
-    <li><strong>Democratizes Business Technology:</strong> By packaging high-performance accounting tools into a lightweight, free, and open-source interface that operates seamlessly on low-cost smartphones and web browsers, this application facilitates equitable access to digital financial literacy tools for grassroots entrepreneurs.</li>
-  </ol>
+
+  <h3 class="sub-title">3.4 Key System Boundaries</h3>
+  <ul>
+    <li><strong>Platform Support:</strong> Fully cross-platform, tested and deployed across Web (Chrome, Edge, Safari) and Android smartphones.</li>
+    <li><strong>Data Handling:</strong> In-memory reactive state managed securely via Provider, optimized for quick daily reconciliation.</li>
+    <li><strong>Visual Feedback:</strong> Instantaneous reactive updates across all widgets without manual screen refreshes.</li>
+  </ul>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
@@ -598,12 +565,12 @@ html_content = f"""<!DOCTYPE html>
 <div class="page">
   <div class="page-header">
     <span>Technology Stack & Flutter Concepts</span>
-    <span>Section 5</span>
+    <span>Section 4</span>
   </div>
 
-  <h2 class="section-title">5. Technology Stack & Key Flutter Concepts</h2>
+  <h2 class="section-title">4. Technology Stack & Key Flutter Concepts</h2>
 
-  <h3 class="sub-title">5.1 Technology Specifications</h3>
+  <h3 class="sub-title">4.1 Technology Specifications</h3>
   <table class="report-table">
     <thead>
       <tr>
@@ -621,7 +588,7 @@ html_content = f"""<!DOCTYPE html>
       <tr>
         <td><strong>UI Framework</strong></td>
         <td>Flutter 3.47+ (Stable)</td>
-        <td>Cross-platform declarative SDK compiling to native ARM / x64 machine code and WebAssembly.</td>
+        <td>Cross-platform declarative SDK compiling to native machine code and WebAssembly.</td>
       </tr>
       <tr>
         <td><strong>State Management</strong></td>
@@ -646,14 +613,14 @@ html_content = f"""<!DOCTYPE html>
     </tbody>
   </table>
 
-  <h3 class="sub-title">5.2 Fundamental Flutter Concepts Demonstrated</h3>
+  <h3 class="sub-title">4.2 Fundamental Flutter Concepts Demonstrated</h3>
   <ul>
-    <li><strong>StatelessWidget vs. StatefulWidget:</strong> Pure display components (such as <code>BalanceCard</code>, <code>TransactionCard</code>, and <code>HomeScreen</code>) are implemented as immutable <code>StatelessWidget</code>s, leveraging the Provider for state updates. Interactive forms requiring local input controllers (such as <code>AddTransactionScreen</code>) utilize <code>StatefulWidget</code> to manage text editing and date-picker state.</li>
+    <li><strong>StatelessWidget vs. StatefulWidget:</strong> Pure display components (such as <code>BalanceCard</code>, <code>TransactionCard</code>, and <code>HomeScreen</code>) are implemented as immutable <code>StatelessWidget</code>s, leveraging Provider for updates. Forms with local input controllers (such as <code>AddTransactionScreen</code>) utilize <code>StatefulWidget</code>.</li>
     <li><strong>Declarative UI Architecture:</strong> The user interface is a direct mathematical projection of state: $UI = f(State)$. Widgets rebuild automatically in response to changes in the underlying <code>TransactionProvider</code> model.</li>
-    <li><strong>Responsive Sliver Architecture:</strong> <code>HomeScreen</code> incorporates <code>CustomScrollView</code>, <code>SliverToBoxAdapter</code>, and <code>SliverList</code> to ensure fluid, zero-jank 60 FPS scrolling across both mobile touchscreens and ultra-wide desktop monitors without layout overflow errors (<code>RenderFlex overflowed</code>).</li>
-    <li><strong>Form Handling & Input Validation:</strong> Implements <code>Form</code> and <code>TextFormField</code> widgets bound to a <code>GlobalKey&lt;FormState&gt;</code> to execute multi-condition validation routines prior to mutating application state.</li>
-    <li><strong>Material 3 Design System:</strong> Integrates modern surface elevation tokens, custom <code>SegmentedButton</code> controls, dynamic color schemes (<code>ColorScheme.fromSeed</code>), and typography hierarchies.</li>
-    <li><strong>Contextual User Feedback:</strong> Demonstrates modal <code>AlertDialog</code> popups for critical delete actions and floating <code>SnackBar</code>s for transaction submission confirmations.</li>
+    <li><strong>Responsive Sliver Architecture:</strong> <code>HomeScreen</code> incorporates <code>CustomScrollView</code>, <code>SliverToBoxAdapter</code>, and <code>SliverList</code> to ensure fluid 60 FPS scrolling without layout overflow errors (<code>RenderFlex overflowed</code>).</li>
+    <li><strong>Form Handling & Input Validation:</strong> Implements <code>Form</code> and <code>TextFormField</code> widgets bound to a <code>GlobalKey&lt;FormState&gt;</code> to enforce validation rules prior to mutating application state.</li>
+    <li><strong>Material 3 Design System:</strong> Integrates modern surface elevation tokens, custom <code>SegmentedButton</code> controls, dynamic color schemes (<code>ColorScheme.fromSeed</code>), and clean card padding.</li>
+    <li><strong>Contextual User Feedback:</strong> Demonstrates modal <code>AlertDialog</code> popups for delete actions and floating <code>SnackBar</code>s for transaction confirmations.</li>
   </ul>
 
   <div class="page-footer">
@@ -669,39 +636,29 @@ html_content = f"""<!DOCTYPE html>
 <div class="page">
   <div class="page-header">
     <span>System Architecture & State Model</span>
-    <span>Section 6</span>
+    <span>Section 5</span>
   </div>
 
-  <h2 class="section-title">6. System Architecture & Reactive State Management</h2>
+  <h2 class="section-title">5. System Architecture & Reactive State Management</h2>
 
   <div class="figure-box">
-    <img src="{arch_b64}" class="figure-img" style="height: 190px; width: auto;">
-    <div class="caption">Figure 6.1: High-Level Unidirectional Architecture and Provider Reactive Loop</div>
+    <img src="{arch_b64}" class="figure-img" style="height: 185px; width: auto;">
+    <div class="caption">Figure 5.1: High-Level Unidirectional Architecture and Provider Reactive Loop</div>
   </div>
 
-  <h3 class="sub-title">6.1 Layered Architectural Decomposition</h3>
+  <h3 class="sub-title">5.1 Layered Architectural Decomposition</h3>
   <ol>
     <li><strong>Data Model Layer:</strong> Encapsulates pure domain representations. The <code>TransactionModel</code> class models individual ledger records, while the <code>TransactionType</code> enumeration defines immutable debit/credit types.</li>
-    <li><strong>State Management Layer (Business Logic):</strong> Centered around <code>TransactionProvider</code>, which mixes in <code>ChangeNotifier</code>. This layer acts as the single source of truth for all business calculations, maintaining the private transaction list and exposing read-only getters.</li>
+    <li><strong>State Management Layer (Business Logic):</strong> Centered around <code>TransactionProvider</code>, which mixes in <code>ChangeNotifier</code>. This layer acts as the single source of truth for calculations, maintaining the private transaction list and exposing read-only getters.</li>
     <li><strong>Presentation Layer (UI):</strong> Divided into top-level screens (<code>HomeScreen</code>, <code>AddTransactionScreen</code>) and reusable atomic widgets (<code>BalanceCard</code>, <code>ExpensePieChart</code>, <code>TransactionCard</code>).</li>
   </ol>
 
-  <h3 class="sub-title">6.2 The Provider Reactive Lifecycle</h3>
-  <p>
-    The application strictly adheres to the unidirectional data flow pattern:
-  </p>
+  <h3 class="sub-title">5.2 The Provider Reactive Lifecycle</h3>
   <ul>
-    <li><strong>State Dispatch:</strong> When a user submits a valid transaction, the view invokes <code>context.read&lt;TransactionProvider&gt;().addTransaction(newTx)</code>. We use <code>context.read()</code> inside callback handlers to dispatch actions without establishing an unnecessary persistent listener.</li>
+    <li><strong>State Dispatch:</strong> When a user submits a valid transaction, the view invokes <code>context.read&lt;TransactionProvider&gt;().addTransaction(newTx)</code> to dispatch the action without establishing a redundant persistent listener.</li>
     <li><strong>State Mutation & Notification:</strong> The provider mutates its internal <code>_transactions</code> collection and immediately executes <code>notifyListeners()</code>.</li>
     <li><strong>Selective Re-rendering:</strong> Flutter's widget tree detects the notification. Widgets wrapped in <code>Consumer&lt;TransactionProvider&gt;</code> or invoking <code>context.watch&lt;TransactionProvider&gt;()</code> execute their <code>build()</code> methods, updating only the affected subtrees.</li>
   </ul>
-
-  <h3 class="sub-title">6.3 Mathematical Calculation Engine</h3>
-  <div class="callout" style="background:#f8fafc; font-family: Consolas, monospace; font-size: 8.5pt;">
-    Total Income = &Sigma; (tx.amount | tx.type == TransactionType.income)<br>
-    Total Expense = &Sigma; (tx.amount | tx.type == TransactionType.expense)<br>
-    Net Balance = Total Income - Total Expense
-  </div>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
@@ -716,13 +673,13 @@ html_content = f"""<!DOCTYPE html>
 <div class="page">
   <div class="page-header">
     <span>Project Structure & Organization</span>
-    <span>Section 7</span>
+    <span>Section 6</span>
   </div>
 
-  <h2 class="section-title">7. Project Directory Structure & Organization</h2>
+  <h2 class="section-title">6. Project Directory Structure & Organization</h2>
 
-  <h3 class="sub-title">7.1 File Tree Organization</h3>
-  <pre class="code-box" style="font-size: 8pt; line-height: 1.3;">
+  <h3 class="sub-title">6.1 File Tree Organization</h3>
+  <pre class="code-box" style="font-size: 7.6pt; line-height: 1.25;">
 lib/
 &#9474;
 &#9500;&#9472;&#9472; main.dart                      &larr; Application entry point, global theme & Provider root
@@ -740,7 +697,7 @@ lib/
     &#9492;&#9472;&#9472; transaction_card.dart      &larr; ListTile card with category icons & delete modal
   </pre>
 
-  <h3 class="sub-title">7.2 Architectural Role of Modules</h3>
+  <h3 class="sub-title">6.2 Architectural Role of Modules</h3>
   <table class="report-table">
     <thead>
       <tr>
@@ -753,7 +710,7 @@ lib/
       <tr>
         <td><code>main.dart</code></td>
         <td><code>MyApp</code></td>
-        <td>Configures <code>ChangeNotifierProvider</code>, initializes the Material 3 design system, and sets up global typography via Google Fonts.</td>
+        <td>Configures <code>ChangeNotifierProvider</code>, initializes Material 3, and sets up global typography via Google Fonts.</td>
       </tr>
       <tr>
         <td><code>models/</code></td>
@@ -778,9 +735,9 @@ lib/
     </tbody>
   </table>
 
-  <h3 class="sub-title">7.3 Academic Viva Rationale for Directory Separation</h3>
+  <h3 class="sub-title">6.3 Viva Design Rationale for Directory Separation</h3>
   <p>
-    This directory layout strictly adheres to the Single Responsibility Principle (SRP). Keeping the data model, state logic, and visual presentation cleanly separated ensures that college viva evaluators can inspect each layer independently. Complex third-party dependencies are avoided, keeping the code easy to trace and understand.
+    This directory layout strictly adheres to the Single Responsibility Principle (SRP). Keeping the data model, state logic, and visual presentation cleanly separated ensures that evaluators can inspect each layer independently. Complex third-party dependencies are avoided, keeping the code easy to trace and understand.
   </p>
 
   <div class="page-footer">
@@ -791,7 +748,7 @@ lib/
 
 
 <!-- ==========================================
-     PAGE 8: CODE SNIPPETS - MAIN & MODEL
+     PAGE 8: CODE SNIPPETS - MAIN & MODEL (ALIGNED)
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -799,9 +756,9 @@ lib/
     <span>Section 7.1 & 7.2</span>
   </div>
 
-  <h2 class="section-title">8. Source Code: Application Root & Data Model</h2>
+  <h2 class="section-title">7. Source Code: Application Root & Data Model</h2>
 
-  <h3 class="sub-title">8.1 Application Root Setup (<code>lib/main.dart</code>)</h3>
+  <h3 class="sub-title">7.1 Application Root Setup (<code>lib/main.dart</code>)</h3>
   <p>
     The root file wraps the entire widget tree inside a <code>ChangeNotifierProvider</code>, ensuring the <code>TransactionProvider</code> is globally accessible across all screens and widgets.
   </p>
@@ -845,21 +802,15 @@ lib/
 }}
   </pre>
 
-  <h3 class="sub-title">8.2 Transaction Model (<code>lib/models/transaction.dart</code>)</h3>
-  <p>
-    An immutable data model capturing essential accounting fields, paired with a type-safe enumeration.
-  </p>
-
+  <h3 class="sub-title">7.2 Transaction Model (<code>lib/models/transaction.dart</code>)</h3>
   <pre class="code-box">
 <span class="kw">enum</span> <span class="cls">TransactionType</span> {{ income, expense }}
 
 <span class="kw">class</span> <span class="cls">TransactionModel</span> {{
-  <span class="kw">final</span> <span class="cls">String</span> id;
-  <span class="kw">final</span> <span class="cls">String</span> title;
+  <span class="kw">final</span> <span class="cls">String</span> id, title, category;
   <span class="kw">final</span> <span class="cls">double</span> amount;
   <span class="kw">final</span> <span class="cls">TransactionType</span> type;
   <span class="kw">final</span> <span class="cls">DateTime</span> date;
-  <span class="kw">final</span> <span class="cls">String</span> category;
 
   <span class="cls">TransactionModel</span>({{
     <span class="kw">required</span> <span class="kw">this</span>.id,
@@ -880,7 +831,7 @@ lib/
 
 
 <!-- ==========================================
-     PAGE 9: CODE SNIPPETS - PROVIDER
+     PAGE 9: CODE SNIPPETS - PROVIDER (ALIGNED)
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -888,34 +839,24 @@ lib/
     <span>Section 7.3</span>
   </div>
 
-  <h2 class="section-title">9. Source Code: State Management Controller</h2>
-
-  <h3 class="sub-title">9.1 Transaction Provider Logic (<code>lib/providers/transaction_provider.dart</code>)</h3>
+  <h2 class="section-title">7.3 State Management Controller (<code>transaction_provider.dart</code>)</h2>
   <p>
     The central state controller managing transaction collections, balance calculations, category grouping, and reactive notifications via <code>notifyListeners()</code>.
   </p>
 
-  <pre class="code-box" style="font-size: 7.6pt; line-height: 1.3;">
+  <pre class="code-box" style="font-size: 7.1pt; line-height: 1.24;">
 <span class="kw">import</span> <span class="str">'package:flutter/material.dart'</span>;
 <span class="kw">import</span> <span class="str">'../models/transaction.dart'</span>;
 
 <span class="kw">class</span> <span class="cls">TransactionProvider</span> <span class="kw">with</span> <span class="cls">ChangeNotifier</span> {{
   <span class="kw">final</span> <span class="cls">List</span>&lt;<span class="cls">TransactionModel</span>&gt; _transactions = [
     <span class="cls">TransactionModel</span>(
-      id: <span class="cls">DateTime</span>.now().subtract(<span class="kw">const</span> <span class="cls">Duration</span>(days: 2)).toString(),
-      title: <span class="str">'Product Sales'</span>,
-      amount: <span class="str">5000</span>,
-      type: <span class="cls">TransactionType</span>.income,
-      date: <span class="cls">DateTime</span>.now().subtract(<span class="kw">const</span> <span class="cls">Duration</span>(days: 2)),
-      category: <span class="str">'Sales'</span>,
+      id: <span class="str">'1'</span>, title: <span class="str">'Product Sales'</span>, amount: <span class="str">5000</span>,
+      type: <span class="cls">TransactionType</span>.income, date: <span class="cls">DateTime</span>.now(), category: <span class="str">'Sales'</span>,
     ),
     <span class="cls">TransactionModel</span>(
-      id: <span class="cls">DateTime</span>.now().subtract(<span class="kw">const</span> <span class="cls">Duration</span>(days: 1)).toString(),
-      title: <span class="str">'Office Supplies'</span>,
-      amount: <span class="str">1200</span>,
-      type: <span class="cls">TransactionType</span>.expense,
-      date: <span class="cls">DateTime</span>.now().subtract(<span class="kw">const</span> <span class="cls">Duration</span>(days: 1)),
-      category: <span class="str">'Supplies'</span>,
+      id: <span class="str">'2'</span>, title: <span class="str">'Office Supplies'</span>, amount: <span class="str">1200</span>,
+      type: <span class="cls">TransactionType</span>.expense, date: <span class="cls">DateTime</span>.now(), category: <span class="str">'Supplies'</span>,
     ),
   ];
 
@@ -953,11 +894,9 @@ lib/
 }}
   </pre>
 
-  <h3 class="sub-title">9.2 Key Viva Points on State Implementation</h3>
-  <ul>
-    <li><code>notifyListeners()</code> acts as an observer pattern dispatcher, notifying registered widgets to run their build methods.</li>
-    <li><code>_transactions</code> is kept private (prefixed with <code>_</code>) to enforce encapsulation; external widgets access an unmodifiable reversed copy via the getter.</li>
-  </ul>
+  <p style="font-size: 8.5pt; color: #475569; margin-top: 6px;">
+    <strong>Design Principle:</strong> <code>notifyListeners()</code> dispatches an observer signal to registered widgets. The private <code>_transactions</code> list enforces strict encapsulation; views access an unmodifiable reversed copy via the getter.
+  </p>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
@@ -967,7 +906,7 @@ lib/
 
 
 <!-- ==========================================
-     PAGE 10: CODE SNIPPETS - HOME SCREEN
+     PAGE 10: CODE SNIPPETS - HOME SCREEN (ALIGNED)
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -975,32 +914,19 @@ lib/
     <span>Section 7.4</span>
   </div>
 
-  <h2 class="section-title">10. Source Code: Responsive Dashboard Screen</h2>
-
-  <h3 class="sub-title">10.1 Dashboard Implementation (<code>lib/screens/home_screen.dart</code>)</h3>
+  <h2 class="section-title">7.4 Responsive Dashboard Screen (<code>home_screen.dart</code>)</h2>
   <p>
-    Built using Flutter's <code>CustomScrollView</code> and sliver widgets, delivering smooth 60 FPS performance and an intuitive empty-state layout.
+    Built using Flutter's <code>CustomScrollView</code> and sliver widgets, delivering smooth 60 FPS performance, reactive Provider binding, and an intuitive empty-state layout.
   </p>
 
-  <pre class="code-box" style="font-size: 7.5pt; line-height: 1.3;">
-<span class="kw">import</span> <span class="str">'package:flutter/material.dart'</span>;
-<span class="kw">import</span> <span class="str">'package:provider/provider.dart'</span>;
-<span class="kw">import</span> <span class="str">'../providers/transaction_provider.dart'</span>;
-<span class="kw">import</span> <span class="str">'../widgets/balance_card.dart'</span>;
-<span class="kw">import</span> <span class="str">'../widgets/transaction_card.dart'</span>;
-<span class="kw">import</span> <span class="str">'../widgets/expense_pie_chart.dart'</span>;
-<span class="kw">import</span> <span class="str">'add_transaction_screen.dart'</span>;
-
+  <pre class="code-box" style="font-size: 7.1pt; line-height: 1.23;">
 <span class="kw">class</span> <span class="cls">HomeScreen</span> <span class="kw">extends</span> <span class="cls">StatelessWidget</span> {{
   <span class="kw">const</span> <span class="cls">HomeScreen</span>({{<span class="kw">super</span>.key}});
 
   <span class="kw">@override</span>
   <span class="cls">Widget</span> build(<span class="cls">BuildContext</span> context) {{
     <span class="kw">return</span> <span class="cls">Scaffold</span>(
-      appBar: <span class="cls">AppBar</span>(
-        title: <span class="kw">const</span> <span class="cls">Text</span>(<span class="str">'Overview'</span>, style: <span class="cls">TextStyle</span>(fontWeight: <span class="cls">FontWeight</span>.w700)),
-        centerTitle: <span class="kw">false</span>,
-      ),
+      appBar: <span class="cls">AppBar</span>(title: <span class="kw">const</span> <span class="cls">Text</span>(<span class="str">'Overview'</span>, style: <span class="cls">TextStyle</span>(fontWeight: <span class="cls">FontWeight</span>.w700))),
       body: <span class="cls">Consumer</span>&lt;<span class="cls">TransactionProvider</span>&gt;(
         builder: (context, provider, child) {{
           <span class="kw">final</span> isEmpty = provider.transactions.isEmpty;
@@ -1012,11 +938,10 @@ lib/
                     <span class="kw">const</span> <span class="cls">BalanceCard</span>(),
                     <span class="kw">if</span> (!isEmpty)
                       <span class="cls">Container</span>(
-                        margin: <span class="kw">const</span> <span class="cls">EdgeInsets</span>.symmetric(horizontal: <span class="str">24.0</span>, vertical: <span class="str">12.0</span>),
+                        margin: <span class="kw">const</span> <span class="cls">EdgeInsets</span>.all(<span class="str">24.0</span>),
                         padding: <span class="kw">const</span> <span class="cls">EdgeInsets</span>.all(<span class="str">24.0</span>),
                         decoration: <span class="cls">BoxDecoration</span>(
-                          color: <span class="cls">Colors</span>.white,
-                          borderRadius: <span class="cls">BorderRadius</span>.circular(<span class="str">32</span>),
+                          color: <span class="cls">Colors</span>.white, borderRadius: <span class="cls">BorderRadius</span>.circular(<span class="str">32</span>),
                         ),
                         child: <span class="kw">const</span> <span class="cls">ExpensePieChart</span>(),
                       ),
@@ -1051,6 +976,10 @@ lib/
 }}
   </pre>
 
+  <p style="font-size: 8.5pt; color: #475569; margin-top: 6px;">
+    <strong>Sliver Layout Benefit:</strong> <code>SliverList</code> creates visible transaction cards lazily on demand, guaranteeing optimal memory utilization and zero layout jank regardless of ledger size.
+  </p>
+
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
     <span>Page 10 of 15</span>
@@ -1067,14 +996,12 @@ lib/
     <span>Section 7.5</span>
   </div>
 
-  <h2 class="section-title">11. Source Code: Form Screen & Input Validation</h2>
-
-  <h3 class="sub-title">11.1 Transaction Form Logic (<code>lib/screens/add_transaction_screen.dart</code>)</h3>
+  <h2 class="section-title">7.5 Form Screen & Input Validation (<code>add_transaction_screen.dart</code>)</h2>
   <p>
     Features custom segmented controls for income/expense switching, strict numerical validation, a category dropdown, and calendar date selection.
   </p>
 
-  <pre class="code-box" style="font-size: 7.5pt; line-height: 1.28;">
+  <pre class="code-box" style="font-size: 7.1pt; line-height: 1.24;">
 <span class="kw">class</span> <span class="cls">_AddTransactionScreenState</span> <span class="kw">extends</span> <span class="cls">State</span>&lt;<span class="cls">AddTransactionScreen</span>&gt; {{
   <span class="kw">final</span> _formKey = <span class="cls">GlobalKey</span>&lt;<span class="cls">FormState</span>&gt;();
   <span class="kw">final</span> _titleController = <span class="cls">TextEditingController</span>();
@@ -1116,7 +1043,6 @@ lib/
         child: <span class="cls">ListView</span>(
           padding: <span class="kw">const</span> <span class="cls">EdgeInsets</span>.all(<span class="str">24</span>),
           children: [
-            <span class="cm">// Segmented Button & Amount field</span>
             <span class="cls">TextFormField</span>(
               controller: _amountController,
               decoration: <span class="kw">const</span> <span class="cls">InputDecoration</span>(labelText: <span class="str">'Amount (₹)'</span>),
@@ -1137,6 +1063,10 @@ lib/
 }}
   </pre>
 
+  <p style="font-size: 8.5pt; color: #475569; margin-top: 6px;">
+    <strong>Form Validation Cycle:</strong> The <code>_formKey.currentState!.validate()</code> call checks all descendant field validators, ensuring invalid or empty transactions cannot corrupt application state.
+  </p>
+
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
     <span>Page 11 of 15</span>
@@ -1153,10 +1083,10 @@ lib/
     <span>Section 7.6</span>
   </div>
 
-  <h2 class="section-title">12. Source Code: Modular Reusable Widgets</h2>
+  <h2 class="section-title">7.6 Source Code: Modular Reusable Widgets</h2>
 
-  <h3 class="sub-title">12.1 Balance Card Widget (<code>lib/widgets/balance_card.dart</code>)</h3>
-  <pre class="code-box" style="font-size: 7.2pt; line-height: 1.25;">
+  <h3 class="sub-title">7.6.1 Balance Card Widget (<code>lib/widgets/balance_card.dart</code>)</h3>
+  <pre class="code-box" style="font-size: 7.0pt; line-height: 1.22;">
 <span class="kw">class</span> <span class="cls">BalanceCard</span> <span class="kw">extends</span> <span class="cls">StatelessWidget</span> {{
   <span class="kw">const</span> <span class="cls">BalanceCard</span>({{<span class="kw">super</span>.key}});
 
@@ -1188,8 +1118,8 @@ lib/
 }}
   </pre>
 
-  <h3 class="sub-title">12.2 Expense Pie Chart Widget (<code>lib/widgets/expense_pie_chart.dart</code>)</h3>
-  <pre class="code-box" style="font-size: 7.2pt; line-height: 1.25;">
+  <h3 class="sub-title">7.6.2 Expense Pie Chart Widget (<code>lib/widgets/expense_pie_chart.dart</code>)</h3>
+  <pre class="code-box" style="font-size: 7.0pt; line-height: 1.22;">
 <span class="kw">class</span> <span class="cls">ExpensePieChart</span> <span class="kw">extends</span> <span class="cls">StatelessWidget</span> {{
   <span class="kw">const</span> <span class="cls">ExpensePieChart</span>({{<span class="kw">super</span>.key}});
 
@@ -1200,11 +1130,11 @@ lib/
     <span class="kw">if</span> (map.isEmpty) <span class="kw">return</span> <span class="kw">const</span> <span class="cls">Text</span>(<span class="str">'No expenses to display'</span>);
 
     <span class="kw">return</span> <span class="cls">SizedBox</span>(
-      height: <span class="str">180</span>,
+      height: <span class="str">170</span>,
       child: <span class="cls">PieChart</span>(
         <span class="cls">PieChartData</span>(
           sections: map.entries.map((e) =&gt; <span class="cls">PieChartSectionData</span>(value: e.value, title: <span class="str">''</span>, radius: <span class="str">22</span>)).toList(),
-          centerSpaceRadius: <span class="str">55</span>,
+          centerSpaceRadius: <span class="str">50</span>,
         ),
       ),
     );
@@ -1228,9 +1158,9 @@ lib/
     <span>Section 8 & 9</span>
   </div>
 
-  <h2 class="section-title">13. Deployment Architecture & System Verification</h2>
+  <h2 class="section-title">8. Cloud Deployment & System Verification</h2>
 
-  <h3 class="sub-title">13.1 Cloud Deployment Pipeline (GitHub Pages)</h3>
+  <h3 class="sub-title">8.1 Cloud Deployment Pipeline (GitHub Pages)</h3>
   <p>
     The application is compiled for the Web target using Flutter's high-performance production compiler and published to GitHub Pages:
   </p>
@@ -1246,8 +1176,8 @@ git remote add origin https://github.com/Saketh17-max/Expense-Tracker.git
 git push -u origin gh-pages --force
   </pre>
 
-  <h3 class="sub-title">13.2 System Testing & Verification Matrix</h3>
-  <table class="report-table" style="font-size: 8pt;">
+  <h3 class="sub-title">8.2 System Testing & Verification Matrix</h3>
+  <table class="report-table" style="font-size: 7.8pt;">
     <thead>
       <tr>
         <th style="width: 10%;">ID</th>
@@ -1333,28 +1263,28 @@ git push -u origin gh-pages --force
     <span>Section 10</span>
   </div>
 
-  <h2 class="section-title">14. Output Screens & User Workflow Walkthrough</h2>
+  <h2 class="section-title">9. Output Screens & User Workflow Walkthrough</h2>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px;">
     <div class="figure-box">
-      <img src="{desktop_b64}" class="figure-img" style="height: 140px; width: 100%; object-fit: cover;">
-      <div class="caption">Figure 14.1: Desktop Web Dashboard (Live Deployment)</div>
+      <img src="{desktop_b64}" class="figure-img" style="height: 135px; width: 100%; object-fit: cover;">
+      <div class="caption">Figure 9.1: Desktop Web Dashboard (Live Deployment)</div>
     </div>
     <div class="figure-box">
-      <img src="{chart_tx_b64}" class="figure-img" style="height: 140px; width: 100%; object-fit: cover;">
-      <div class="caption">Figure 14.2: Category Donut Chart & Transaction Stream</div>
+      <img src="{chart_tx_b64}" class="figure-img" style="height: 135px; width: 100%; object-fit: cover;">
+      <div class="caption">Figure 9.2: Category Donut Chart & Transaction Stream</div>
     </div>
     <div class="figure-box">
-      <img src="{add_tx_b64}" class="figure-img" style="height: 155px; width: auto; object-fit: contain;">
-      <div class="caption">Figure 14.3: New Transaction Form Modal</div>
+      <img src="{add_tx_b64}" class="figure-img" style="height: 150px; width: auto; object-fit: contain;">
+      <div class="caption">Figure 9.3: New Transaction Form Modal</div>
     </div>
     <div class="figure-box">
-      <img src="{dialog_b64}" class="figure-img" style="height: 155px; width: auto; object-fit: contain;">
-      <div class="caption">Figure 14.4: Delete Confirmation Dialog</div>
+      <img src="{dialog_b64}" class="figure-img" style="height: 150px; width: auto; object-fit: contain;">
+      <div class="caption">Figure 9.4: Delete Confirmation Dialog</div>
     </div>
   </div>
 
-  <h3 class="sub-title" style="margin-top: 10px;">14.2 User Workflow Step-by-Step</h3>
+  <h3 class="sub-title" style="margin-top: 8px;">9.2 User Workflow Step-by-Step</h3>
   <ol style="font-size: 8.5pt;">
     <li><strong>Dashboard Audit:</strong> The user opens the app and immediately sees their financial overview: Total Balance, Income, Expense, and a breakdown chart.</li>
     <li><strong>Initiating New Record:</strong> The user taps the floating <code>+ Add</code> button, opening the <code>AddTransactionScreen</code>.</li>
@@ -1371,35 +1301,39 @@ git push -u origin gh-pages --force
 
 
 <!-- ==========================================
-     PAGE 15: CONCLUSION & VIVA GUIDE
+     PAGE 15: CONCLUSION & TECHNICAL SUMMARY (NO VIVA Q&A)
      ========================================== -->
 <div class="page">
   <div class="page-header">
-    <span>Conclusion & Viva-Voce Defense</span>
+    <span>Conclusion & Technical Summary</span>
     <span>Section 11</span>
   </div>
 
-  <h2 class="section-title">15. Conclusion & Academic Viva-Voce Guide</h2>
+  <h2 class="section-title">10. Project Conclusion & Technical Summary</h2>
 
-  <h3 class="sub-title">15.1 Project Conclusion & Rubric Fulfillment</h3>
-  <table class="report-table" style="font-size: 8pt; margin-bottom: 8px;">
+  <h3 class="sub-title">10.1 Project Conclusion & Rubric Compliance</h3>
+  <p>
+    The <strong>Small-Business Income/Expense Tracker</strong> successfully demonstrates how the <strong>Provider</strong> state management architecture provides a robust, predictable, and maintainable framework for cross-platform Flutter applications. By segregating business logic within <code>TransactionProvider</code> and strictly employing reactive listeners (<code>Consumer</code>, <code>context.watch()</code>) and non-listening dispatchers (<code>context.read()</code>), the application achieves high performance, instantaneous arithmetic feedback, and clean separation of concerns.
+  </p>
+
+  <table class="report-table" style="font-size: 8pt; margin-top: 8px; margin-bottom: 12px;">
     <thead>
       <tr>
         <th>Evaluation Criteria</th>
         <th style="text-align: center;">Marks</th>
-        <th>Implementation Evidence</th>
+        <th>Implementation Evidence & Technical Compliance</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Functionality</strong></td>
         <td style="text-align: center; font-weight:700;">8 / 8</td>
-        <td>Complete CRUD ledger, real-time balance engine, dynamic category charts.</td>
+        <td>Complete CRUD ledger, real-time balance calculations, dynamic category charts.</td>
       </tr>
       <tr>
         <td><strong>Flutter Concepts</strong></td>
-        <td style="text-align: center; font-weight:700;">4 / 4</td>
-        <td>Stateful/Stateless, Provider, Consumer, Form validation, Dialogs, Slivers.</td>
+        <td style="text-align: center; font-weight:700;">5 / 5</td>
+        <td>Stateful/Stateless, Provider, Consumer, Form validation, Dialogs, Custom Slivers.</td>
       </tr>
       <tr>
         <td><strong>UI / UX Design</strong></td>
@@ -1409,42 +1343,28 @@ git push -u origin gh-pages --force
       <tr>
         <td><strong>Code Quality</strong></td>
         <td style="text-align: center; font-weight:700;">2 / 2</td>
-        <td>Zero warnings on <code>flutter analyze</code>, modular single-responsibility files.</td>
-      </tr>
-      <tr>
-        <td><strong>SDG Alignment</strong></td>
-        <td style="text-align: center; font-weight:700;">1 / 1</td>
-        <td>Direct support for UN SDG 8: Decent Work and Economic Growth.</td>
+        <td>Zero warnings on <code>flutter analyze</code>, modular single-responsibility structure.</td>
       </tr>
       <tr>
         <td><strong>Documentation & Demo</strong></td>
         <td style="text-align: center; font-weight:700;">2 / 2</td>
-        <td>Published GitHub Pages deployment and complete 15-page project report.</td>
+        <td>Published GitHub Pages live deployment and comprehensive academic project report.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3 class="sub-title">15.2 Frequently Asked Viva-Voce Questions</h3>
-  <div style="font-size: 8pt;">
-    <p style="margin-bottom: 4px;">
-      <strong>Q1: What is the Provider package and why is it used instead of setState()?</strong><br>
-      <em>Answer:</em> <code>setState()</code> only triggers local widget rebuilds and requires drilling state down through constructor arguments. Provider leverages Flutter's <code>InheritedWidget</code> to make data globally accessible and selectively rebuilds only the widgets that depend on updated fields.
-    </p>
-    <p style="margin-bottom: 4px;">
-      <strong>Q2: What is the exact difference between context.read() and context.watch()?</strong><br>
-      <em>Answer:</em> <code>context.watch&lt;T&gt;()</code> subscribes to changes and re-runs the widget's <code>build()</code> method whenever <code>notifyListeners()</code> is called. <code>context.read&lt;T&gt;()</code> accesses the provider without subscribing, making it ideal for event handlers like button presses.
-    </p>
-    <p style="margin-bottom: 4px;">
-      <strong>Q3: What role does ChangeNotifier play?</strong><br>
-      <em>Answer:</em> <code>ChangeNotifier</code> is a class in the Flutter Foundation SDK that provides change notifications using the Observer pattern. When business state changes, calling <code>notifyListeners()</code> notifies all listening widgets to rebuild.
-    </p>
-  </div>
+  <h3 class="sub-title">10.2 Future Scope & Enhancements</h3>
+  <ul>
+    <li><strong>Local Offline Persistence:</strong> Integrate lightweight NoSQL storage (such as Hive or SharedPreferences) to cache ledger entries across application restarts.</li>
+    <li><strong>Automated PDF Statement Export:</strong> Allow business owners to generate and export monthly profit/loss PDF statements directly from the device.</li>
+    <li><strong>Multi-Currency & Tax Handling:</strong> Introduce localized GST/tax calculation options and support for multiple international currencies.</li>
+  </ul>
 
-  <h3 class="sub-title">15.3 Official Project Links</h3>
-  <p style="font-size: 8.5pt;">
-    &bull; <strong>GitHub Repository:</strong> <a href="https://github.com/Saketh17-max/Expense-Tracker" style="color:#1d4ed8;">https://github.com/Saketh17-max/Expense-Tracker</a><br>
-    &bull; <strong>Live Cloud Web App:</strong> <a href="https://saketh17-max.github.io/Expense-Tracker/" style="color:#1d4ed8;">https://saketh17-max.github.io/Expense-Tracker/</a>
-  </p>
+  <h3 class="sub-title" style="margin-top: 10px;">10.3 Official Project Deliverable Links</h3>
+  <div class="callout" style="font-size: 8.5pt;">
+    &bull; <strong>GitHub Source Code Repository:</strong> <a href="https://github.com/Saketh17-max/Expense-Tracker" style="color:#1d4ed8;">https://github.com/Saketh17-max/Expense-Tracker</a><br>
+    &bull; <strong>Live Cloud Web Application:</strong> <a href="https://saketh17-max.github.io/Expense-Tracker/" style="color:#1d4ed8;">https://saketh17-max.github.io/Expense-Tracker/</a>
+  </div>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
@@ -1462,7 +1382,7 @@ pdf_path = r"C:\Users\venka\Desktop\college\flutter\Project_Report_T_Venkat_Sake
 with open(html_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print(f"Wrote HTML report to {html_path} ({len(html_content)} bytes)")
+print(f"Wrote updated HTML report to {html_path} ({len(html_content)} bytes)")
 
 chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 cmd = [
@@ -1475,7 +1395,7 @@ cmd = [
     html_path
 ]
 
-print("Rendering PDF via Chrome headless...")
+print("Rendering updated PDF via Chrome headless...")
 subprocess.run(cmd, check=True)
 
 if os.path.exists(pdf_path):
