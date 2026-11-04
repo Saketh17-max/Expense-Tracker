@@ -52,7 +52,7 @@ html_content = f"""<!DOCTYPE html>
     max-height: 297mm;
     position: relative;
     background: #ffffff;
-    padding: 20mm 20mm 24mm 20mm;
+    padding: 20mm 20mm 25mm 20mm;
     page-break-after: always;
     page-break-inside: avoid;
     overflow: hidden;
@@ -91,7 +91,7 @@ html_content = f"""<!DOCTYPE html>
     font-weight: 500;
   }}
   
-  /* Headings & Badges */
+  /* Headings */
   h1, h2, h3, h4 {{
     color: #0f172a;
     margin-top: 0;
@@ -181,13 +181,24 @@ html_content = f"""<!DOCTYPE html>
   /* Image figure containers */
   .figure-box {{
     text-align: center;
-    margin: 5px 0;
+    margin: 6px 0;
   }}
-  .figure-img {{
-    max-width: 100%;
+  .browser-frame {{
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    background: #ffffff;
+    display: inline-block;
+    width: 95%;
+  }}
+  .browser-frame img {{
+    width: 100%;
+    height: auto;
+    max-height: 160px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }}
   .caption {{
     font-size: 7.5pt;
@@ -292,7 +303,7 @@ html_content = f"""<!DOCTYPE html>
 
 
 <!-- ==========================================
-     PAGE 2: TABLE OF CONTENTS (CONSOLIDATED 13 PAGES)
+     PAGE 2: TABLE OF CONTENTS (14 PAGES)
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -372,8 +383,13 @@ html_content = f"""<!DOCTYPE html>
       </tr>
       <tr>
         <td style="text-align: center; font-weight: 700;">7</td>
-        <td><strong>High-Resolution Output Screens (Part 2 - Mobile Views) & Project Conclusion</strong></td>
+        <td><strong>High-Resolution Output Screens (Part 2 - Mobile Interface & Workflow)</strong></td>
         <td style="text-align: center; font-weight: 700;">13</td>
+      </tr>
+      <tr>
+        <td style="text-align: center; font-weight: 700;">8</td>
+        <td><strong>Project Conclusion, Technical Summary & Deliverable Links</strong></td>
+        <td style="text-align: center; font-weight: 700;">14</td>
       </tr>
     </tbody>
   </table>
@@ -389,13 +405,13 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 2 of 13</span>
+    <span>Page 2 of 14</span>
   </div>
 </div>
 
 
 <!-- ==========================================
-     PAGE 3: STUDENT DETAILS, PROBLEM DEFINITION & OBJECTIVES (CONSOLIDATED)
+     PAGE 3: STUDENT DETAILS, PROBLEM DEFINITION & OBJECTIVES
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -454,7 +470,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 3 of 13</span>
+    <span>Page 3 of 14</span>
   </div>
 </div>
 
@@ -525,13 +541,13 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 4 of 13</span>
+    <span>Page 4 of 14</span>
   </div>
 </div>
 
 
 <!-- ==========================================
-     PAGE 5: SYSTEM ARCHITECTURE & DIRECTORY STRUCTURE (CONSOLIDATED)
+     PAGE 5: SYSTEM ARCHITECTURE & DIRECTORY STRUCTURE
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -591,7 +607,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 5 of 13</span>
+    <span>Page 5 of 14</span>
   </div>
 </div>
 
@@ -670,7 +686,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 6 of 13</span>
+    <span>Page 6 of 14</span>
   </div>
 </div>
 
@@ -741,7 +757,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 7 of 13</span>
+    <span>Page 7 of 14</span>
   </div>
 </div>
 
@@ -819,7 +835,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 8 of 13</span>
+    <span>Page 8 of 14</span>
   </div>
 </div>
 
@@ -902,7 +918,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 9 of 13</span>
+    <span>Page 9 of 14</span>
   </div>
 </div>
 
@@ -977,7 +993,7 @@ html_content = f"""<!DOCTYPE html>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 10 of 13</span>
+    <span>Page 10 of 14</span>
   </div>
 </div>
 
@@ -1078,13 +1094,13 @@ git push -u origin gh-pages --force
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 11 of 13</span>
+    <span>Page 11 of 14</span>
   </div>
 </div>
 
 
 <!-- ==========================================
-     PAGE 12: LARGE OUTPUT SCREENS (PART 1: WEB DASHBOARD SHOWCASE)
+     PAGE 12: OUTPUT SCREENS (PART 1: DESKTOP WEB SHOWCASE)
      ========================================== -->
 <div class="page">
   <div class="page-header">
@@ -1094,72 +1110,119 @@ git push -u origin gh-pages --force
 
   <h2 class="section-title">6. Output Screens: Web Dashboard & Analytics Showcase</h2>
 
-  <div class="figure-box" style="margin-bottom: 12px;">
-    <img src="{desktop_b64}" class="figure-img" style="height: 200px; width: 100%; object-fit: cover;">
+  <!-- Figure 6.1: Full Desktop Dashboard -->
+  <div class="figure-box" style="margin-top: 4px; margin-bottom: 8px;">
+    <div class="browser-frame">
+      <img src="{desktop_b64}" style="width: 100%; height: auto; max-height: 160px; object-fit: contain;">
+    </div>
     <div class="caption">Figure 6.1: Full Desktop Dashboard Overview (Live Web Deployment on GitHub Pages)</div>
   </div>
-  <p style="font-size: 8.5pt; color: #334155;">
-    <strong>Dashboard Analysis:</strong> Figure 6.1 presents the production web application view. The slate gradient <code>BalanceCard</code> prominently features the calculated Net Balance (₹3,800.00), accompanied by color-coded sub-indicators for aggregated Income and Expenses. The clean, modern typography and surface elevation ensure immediate readability.
+  <p style="font-size: 8.5pt; color: #334155; margin-bottom: 12px;">
+    <strong>Dashboard Analysis:</strong> Figure 6.1 illustrates the responsive desktop web overview. The top balance card displays the calculated Net Balance (₹3,800.00) alongside real-time indicators for accumulated Income and Expenses. The application layout automatically responds to widescreen desktop viewports with fluid proportions.
   </p>
 
-  <div class="figure-box" style="margin-top: 10px; margin-bottom: 8px;">
-    <img src="{chart_tx_b64}" class="figure-img" style="height: 190px; width: 100%; object-fit: cover;">
+  <!-- Figure 6.2: Donut Chart & Transactions -->
+  <div class="figure-box" style="margin-top: 6px; margin-bottom: 8px;">
+    <div class="browser-frame">
+      <img src="{chart_tx_b64}" style="width: 100%; height: auto; max-height: 155px; object-fit: contain;">
+    </div>
     <div class="caption">Figure 6.2: Categorical Donut Breakdown Chart & Live Transaction Stream</div>
   </div>
   <p style="font-size: 8.5pt; color: #334155;">
-    <strong>Visual Analytics:</strong> Figure 6.2 illustrates the interactive vector donut chart powered by <code>fl_chart</code>. Outflows are grouped by category (Supplies, Utilities) with a color-coded legend, while recent entries display beneath with category-specific rounded icon badges.
+    <strong>Visual Analytics:</strong> Figure 6.2 highlights the dynamic category distribution chart powered by <code>fl_chart</code>. Outflows are aggregated into distinct color-coded sectors (Utilities, Supplies) with an active legend, followed by recent transaction items with rounded icon badges.
   </p>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 12 of 13</span>
+    <span>Page 12 of 14</span>
   </div>
 </div>
 
 
 <!-- ==========================================
-     PAGE 13: LARGE OUTPUT SCREENS (PART 2: MOBILE VIEWS) & CONCLUSION
+     PAGE 13: OUTPUT SCREENS (PART 2: MOBILE INTERFACE & WORKFLOW)
      ========================================== -->
 <div class="page">
   <div class="page-header">
-    <span>Mobile Views & Project Conclusion</span>
+    <span>Mobile Interface & User Workflow</span>
     <span>Section 7</span>
   </div>
 
-  <h2 class="section-title">7. Output Screens: Mobile Interface & Conclusion</h2>
+  <h2 class="section-title">7. Output Screens: Mobile Interface & User Workflow</h2>
 
-  <!-- Substantially larger mobile screenshots -->
-  <div style="display: flex; justify-content: center; gap: 24px; margin-top: 4px; margin-bottom: 8px;">
-    <div class="figure-box" style="flex: 1; text-align: center;">
-      <img src="{add_tx_b64}" class="figure-img" style="height: 235px; width: auto; object-fit: contain;">
-      <div class="caption">Figure 7.1: New Transaction Creation Form</div>
+  <!-- Clean, well-spaced, perfectly aligned mobile mockups -->
+  <div style="display: flex; justify-content: center; gap: 32px; margin-top: 10px; margin-bottom: 14px;">
+    <div style="text-align: center; flex: 1;">
+      <div style="display: inline-block; border-radius: 28px; box-shadow: 0 10px 20px rgba(0,0,0,0.12); overflow: hidden;">
+        <img src="{add_tx_b64}" style="height: 220px; width: auto; display: block;">
+      </div>
+      <div class="caption" style="margin-top: 6px;">Figure 7.1: New Transaction Creation Form</div>
     </div>
-    <div class="figure-box" style="flex: 1; text-align: center;">
-      <img src="{dialog_b64}" class="figure-img" style="height: 235px; width: auto; object-fit: contain;">
-      <div class="caption">Figure 7.2: Delete Confirmation Modal Dialog</div>
+    <div style="text-align: center; flex: 1;">
+      <div style="display: inline-block; border-radius: 28px; box-shadow: 0 10px 20px rgba(0,0,0,0.12); overflow: hidden;">
+        <img src="{dialog_b64}" style="height: 220px; width: auto; display: block;">
+      </div>
+      <div class="caption" style="margin-top: 6px;">Figure 7.2: Delete Confirmation Modal Dialog</div>
     </div>
   </div>
 
-  <h3 class="sub-title" style="margin-top: 8px;">7.1 Project Conclusion & Technical Summary</h3>
-  <p style="font-size: 8.5pt;">
+  <h3 class="sub-title" style="margin-top: 10px;">7.2 Step-by-Step User Workflow</h3>
+  <ol style="font-size: 8.5pt; color: #334155; line-height: 1.45;">
+    <li><strong>Dashboard Audit:</strong> The user accesses the application and immediately inspects their financial summary (Total Balance, Income, Expense, and Category Distribution).</li>
+    <li><strong>Opening Transaction Form:</strong> Tapping the floating <code>+ Add</code> button triggers a modal route transition to the <code>AddTransactionScreen</code>.</li>
+    <li><strong>Form Entry & Validation:</strong> The user toggles between Income and Expense using the <code>SegmentedButton</code>, enters an amount and description, selects a category, chooses a date, and presses Save.</li>
+    <li><strong>Reactive State Dispatch:</strong> The form verifies input constraints, dispatches the record via <code>context.read&lt;TransactionProvider&gt;().addTransaction()</code>, and navigates back to the dashboard.</li>
+    <li><strong>Safe Record Deletion:</strong> Tapping the delete icon on any ledger entry opens an <code>AlertDialog</code>, updating the balance only upon user confirmation.</li>
+  </ol>
+
+  <div class="page-footer">
+    <span>Vishnu Institute of Technology :: Bhimavaram</span>
+    <span>Page 13 of 14</span>
+  </div>
+</div>
+
+
+<!-- ==========================================
+     PAGE 14: CONCLUSION, TECHNICAL SUMMARY & DELIVERABLES
+     ========================================== -->
+<div class="page">
+  <div class="page-header">
+    <span>Conclusion & Project Deliverables</span>
+    <span>Section 8</span>
+  </div>
+
+  <h2 class="section-title">8. Project Conclusion, Technical Summary & Deliverables</h2>
+
+  <h3 class="sub-title">8.1 Project Conclusion</h3>
+  <p>
     The <strong>Small-Business Income/Expense Tracker</strong> delivers a complete, production-grade bookkeeping solution built in Flutter. By adopting the <strong>Provider</strong> pattern, all financial calculations ($Balance = Income - Expense$) and category aggregations execute with zero latency in constant $O(n)$ time complexity, ensuring instant updates across both desktop and mobile viewports.
   </p>
 
-  <h3 class="sub-title">7.2 Future Scope & Enhancements</h3>
-  <ul style="font-size: 8.2pt;">
+  <h3 class="sub-title">8.2 Technical Summary & Key Achievements</h3>
+  <ul>
+    <li><strong>Predictable Reactive Architecture:</strong> Unidirectional data flow utilizing Flutter's official <code>ChangeNotifier</code> and <code>ChangeNotifierProvider</code>, ensuring state mutates only through dedicated provider methods.</li>
+    <li><strong>Live Arithmetic Feedback:</strong> Dynamic recalculation of Total Income, Total Expenses, and Net Balance in constant $O(n)$ time complexity, instantly reflected across all active views.</li>
+    <li><strong>Categorical Spending Analytics:</strong> Seamless integration with <code>fl_chart</code> to deliver an interactive, visually distinct donut chart that groups business overheads into actionable categories.</li>
+    <li><strong>Robust Input Validation:</strong> Strict client-side verification preventing invalid numeric inputs, empty descriptions, or missing categories from entering the financial ledger.</li>
+    <li><strong>Cross-Platform Production Deployment:</strong> Verified and deployed across both mobile smartphones and web browsers with automated continuous delivery via GitHub Pages.</li>
+  </ul>
+
+  <h3 class="sub-title">8.3 Future Scope & Enhancements</h3>
+  <ul>
     <li><strong>Offline Caching:</strong> Integrate local key-value storage (Hive / SharedPreferences) for persistence across device restarts.</li>
-    <li><strong>Automated PDF Export:</strong> Allow owners to generate and export monthly financial statements directly from the client.</li>
+    <li><strong>Automated PDF Export:</strong> Allow business owners to generate and export monthly financial statements directly from the client.</li>
     <li><strong>Multi-Currency Support:</strong> Localized GST handling and international currency conversion options.</li>
   </ul>
 
-  <div class="callout" style="font-size: 8.5pt; margin-top: 6px;">
+  <h3 class="sub-title" style="margin-top: 10px;">8.4 Official Project Deliverable Links</h3>
+  <div class="callout" style="font-size: 8.5pt;">
     &bull; <strong>GitHub Source Code Repository:</strong> <a href="https://github.com/Saketh17-max/Expense-Tracker" style="color:#1d4ed8;">https://github.com/Saketh17-max/Expense-Tracker</a><br>
     &bull; <strong>Live Cloud Web Application:</strong> <a href="https://saketh17-max.github.io/Expense-Tracker/" style="color:#1d4ed8;">https://saketh17-max.github.io/Expense-Tracker/</a>
   </div>
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
-    <span>Page 13 of 13</span>
+    <span>Page 14 of 14</span>
   </div>
 </div>
 

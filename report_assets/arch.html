@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    margin: 0;
+    padding: 30px;
+    background: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    width: 950px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px 40px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    border: 1px solid #e2e8f0;
+  }
+  h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 22px;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+  }
+  .card {
+    border-radius: 14px;
+    padding: 20px 24px;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    position: relative;
+  }
+  .card-header {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .ui-badge { background: #eff6ff; color: #2563eb; }
+  .provider-badge { background: #fdf2f8; color: #db2777; }
+  .model-badge { background: #f0fdf4; color: #16a34a; }
+  .flow-badge { background: #fefce8; color: #ca8a04; }
+  
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #334155;
+  }
+  code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: Consolas, monospace;
+    font-size: 12.5px;
+    color: #0f172a;
+  }
+  .flow-box {
+    grid-column: span 2;
+    background: #f8fafc;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 20px 25px;
+  }
+  .flow-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  .step {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    width: 170px;
+  }
+  .arrow {
+    font-size: 20px;
+    color: #64748b;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Flutter + Provider State Management Architecture</h2>
+  
+  <div class="grid">
+    <div class="card" style="border-left: 4px solid #3b82f6;">
+      <div class="card-header">
+        <span class="badge ui-badge">Presentation Layer</span>
+        <span>UI Widgets & Screens</span>
+      </div>
+      <ul>
+        <li><code>HomeScreen</code>: Sliver dashboard layout</li>
+        <li><code>BalanceCard</code>: Displays Income, Expense, Balance</li>
+        <li><code>ExpensePieChart</code>: FL Chart donut breakdown</li>
+        <li><code>TransactionCard</code>: Recent entry tile & delete icon</li>
+        <li><code>AddTransactionScreen</code>: Form & validation</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left: 4px solid #db2777;">
+      <div class="card-header">
+        <span class="badge provider-badge">State Management Layer</span>
+        <span>TransactionProvider</span>
+      </div>
+      <ul>
+        <li>Extends <code>ChangeNotifier</code></li>
+        <li>Private state: <code>List&lt;TransactionModel&gt; _transactions</code></li>
+        <li>Getters: <code>totalIncome</code>, <code>totalExpense</code>, <code>balance</code></li>
+        <li>Aggregator: <code>expensesByCategory</code> map</li>
+        <li>Mutators: <code>addTransaction()</code>, <code>deleteTransaction()</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow-box">
+    <div style="font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+      <span class="badge flow-badge">Reactive Loop</span>
+      <span>Unidirectional Data & Notification Flow</span>
+    </div>
+    
+    <div class="flow-steps">
+      <div class="step" style="border-top: 3px solid #2563eb;">
+        <span style="color:#2563eb; font-size:11px; display:block;">STEP 1</span>
+        User Interaction<br><span style="font-size:11px; font-weight:normal; color:#64748b;">(Add / Delete Entry)</span>
+      </div>
+      <div class="arrow">&rarr;</div>
+      <div class="step" style="border-top: 3px solid #db2777;">
+        <span style="color:#db2777; font-size:11px; display:block;">STEP 2</span>
+        <code>context.read()</code><br><span style="font-size:11px; font-weight:normal; color:#64748b;">Dispatches Action</span>
+      </div>
+      <div class="arrow">&rarr;</div>
+      <div class="step" style="border-top: 3px solid #16a34a;">
+        <span style="color:#16a34a; font-size:11px; display:block;">STEP 3</span>
+        State Mutation<br><span style="font-size:11px; font-weight:normal; color:#64748b;">Updates List</span>
+      </div>
+      <div class="arrow">&rarr;</div>
+      <div class="step" style="border-top: 3px solid #ea580c;">
+        <span style="color:#ea580c; font-size:11px; display:block;">STEP 4</span>
+        <code>notifyListeners()</code><br><span style="font-size:11px; font-weight:normal; color:#64748b;">Signals Observers</span>
+      </div>
+      <div class="arrow">&rarr;</div>
+      <div class="step" style="border-top: 3px solid #7c3aed;">
+        <span style="color:#7c3aed; font-size:11px; display:block;">STEP 5</span>
+        <code>Consumer / watch</code><br><span style="font-size:11px; font-weight:normal; color:#64748b;">Rebuilds Active UI</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
