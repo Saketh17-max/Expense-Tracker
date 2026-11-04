@@ -711,10 +711,7 @@ lib/
     </tbody>
   </table>
 
-  <h3 class="sub-title">6.3 Viva Design Rationale for Directory Separation</h3>
-  <p>
-    This directory layout strictly adheres to the Single Responsibility Principle (SRP). Keeping the data model, state logic, and visual presentation cleanly separated ensures that evaluators can inspect each layer independently. Complex third-party dependencies are avoided, keeping the code easy to trace and understand.
-  </p>
+
 
   <div class="page-footer">
     <span>Vishnu Institute of Technology :: Bhimavaram</span>
@@ -1287,56 +1284,28 @@ git push -u origin gh-pages --force
 
   <h2 class="section-title">10. Project Conclusion & Technical Summary</h2>
 
-  <h3 class="sub-title">10.1 Project Conclusion & Rubric Compliance</h3>
+  <h3 class="sub-title">10.1 Project Conclusion</h3>
   <p>
     The <strong>Small-Business Income/Expense Tracker</strong> successfully demonstrates how the <strong>Provider</strong> state management architecture provides a robust, predictable, and maintainable framework for cross-platform Flutter applications. By segregating business logic within <code>TransactionProvider</code> and strictly employing reactive listeners (<code>Consumer</code>, <code>context.watch()</code>) and non-listening dispatchers (<code>context.read()</code>), the application achieves high performance, instantaneous arithmetic feedback, and clean separation of concerns.
   </p>
 
-  <table class="report-table" style="font-size: 8pt; margin-top: 8px; margin-bottom: 12px;">
-    <thead>
-      <tr>
-        <th>Evaluation Criteria</th>
-        <th style="text-align: center;">Marks</th>
-        <th>Implementation Evidence & Technical Compliance</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Functionality</strong></td>
-        <td style="text-align: center; font-weight:700;">8 / 8</td>
-        <td>Complete CRUD ledger, real-time balance calculations, dynamic category charts.</td>
-      </tr>
-      <tr>
-        <td><strong>Flutter Concepts</strong></td>
-        <td style="text-align: center; font-weight:700;">5 / 5</td>
-        <td>Stateful/Stateless, Provider, Consumer, Form validation, Dialogs, Custom Slivers.</td>
-      </tr>
-      <tr>
-        <td><strong>UI / UX Design</strong></td>
-        <td style="text-align: center; font-weight:700;">3 / 3</td>
-        <td>Material 3 theme, responsive layouts, Inter typography, Apple-style cards.</td>
-      </tr>
-      <tr>
-        <td><strong>Code Quality</strong></td>
-        <td style="text-align: center; font-weight:700;">2 / 2</td>
-        <td>Zero warnings on <code>flutter analyze</code>, modular single-responsibility structure.</td>
-      </tr>
-      <tr>
-        <td><strong>Documentation & Demo</strong></td>
-        <td style="text-align: center; font-weight:700;">2 / 2</td>
-        <td>Published GitHub Pages live deployment and comprehensive academic project report.</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3 class="sub-title">10.2 Technical Summary & Key Achievements</h3>
+  <ul>
+    <li><strong>Predictable Reactive Architecture:</strong> Implemented pure unidirectional data flow utilizing Flutter's official <code>ChangeNotifier</code> and <code>ChangeNotifierProvider</code>, ensuring state mutates only through dedicated provider methods.</li>
+    <li><strong>Live Arithmetic Feedback:</strong> Dynamic recalculation of Total Income, Total Expenses, and Net Balance ($Balance = Income - Expense$) in constant $O(n)$ time complexity, instantly reflected across all active views.</li>
+    <li><strong>Categorical Spending Analytics:</strong> Seamless integration with <code>fl_chart</code> to deliver an interactive, visually distinct donut chart that groups business overheads into actionable categories.</li>
+    <li><strong>Robust Input Validation:</strong> Strict client-side verification preventing invalid numeric inputs, empty descriptions, or missing categories from entering the financial ledger.</li>
+    <li><strong>Cross-Platform Production Deployment:</strong> Verified and deployed across both mobile smartphones and web browsers with automated continuous delivery via GitHub Pages.</li>
+  </ul>
 
-  <h3 class="sub-title">10.2 Future Scope & Enhancements</h3>
+  <h3 class="sub-title">10.3 Future Scope & Enhancements</h3>
   <ul>
     <li><strong>Local Offline Persistence:</strong> Integrate lightweight NoSQL storage (such as Hive or SharedPreferences) to cache ledger entries across application restarts.</li>
     <li><strong>Automated PDF Statement Export:</strong> Allow business owners to generate and export monthly profit/loss PDF statements directly from the device.</li>
     <li><strong>Multi-Currency & Tax Handling:</strong> Introduce localized GST/tax calculation options and support for multiple international currencies.</li>
   </ul>
 
-  <h3 class="sub-title" style="margin-top: 10px;">10.3 Official Project Deliverable Links</h3>
+  <h3 class="sub-title" style="margin-top: 10px;">10.4 Official Project Deliverable Links</h3>
   <div class="callout" style="font-size: 8.5pt;">
     &bull; <strong>GitHub Source Code Repository:</strong> <a href="https://github.com/Saketh17-max/Expense-Tracker" style="color:#1d4ed8;">https://github.com/Saketh17-max/Expense-Tracker</a><br>
     &bull; <strong>Live Cloud Web Application:</strong> <a href="https://saketh17-max.github.io/Expense-Tracker/" style="color:#1d4ed8;">https://saketh17-max.github.io/Expense-Tracker/</a>
